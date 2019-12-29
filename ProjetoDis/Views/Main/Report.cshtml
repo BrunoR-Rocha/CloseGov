@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Report";
+}
+
+<h2>Report</h2>
+
+    <div class="container">
+
+        <form action="/Main/Report" method="POST">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="title" placeholder="Enter a short title" name="Title" required>
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <br/>
+                <textarea name="description" placeholder="Enter a short description" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Date</label>
+                <input type="datetime" id="date" placeholder="Enter the date of the Ocurrance" name="date" required>
+            </div>
+
+            <div class="form-group">
+                <label for="local">Locality - Region</label>
+                <input type="text" class="form-control" id="local" placeholder="Enter the Location of the Ocurrance " name="local" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit allert</button>
+        </form>
+    </div>

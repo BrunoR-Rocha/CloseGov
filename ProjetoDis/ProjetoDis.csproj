@@ -181,10 +181,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912291811538_InitialCreate.cs" />
+    <Compile Include="Migrations\201912291811538_InitialCreate.designer.cs">
+      <DependentUpon>201912291811538_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Alert.cs" />
     <Compile Include="Models\CloseGovDb.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="ProjectClasses\Occurrences\Garbage.cs" />
+    <Compile Include="ProjectClasses\Occurrences\Ocurrence.cs" />
+    <Compile Include="ProjectClasses\Occurrences\Road_Pavement.cs" />
+    <Compile Include="ProjectClasses\Occurrences\Vegetation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -228,10 +237,16 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Main\Alert.cshtml" />
     <Content Include="Views\Main\Report.cshtml" />
-    <Content Include="Views\Main\index.cshtml" />
+    <Content Include="Views\Main\Index.cshtml" />
+    <Content Include="Views\Shared\Occurence_Form.cshtml" />
+    <Content Include="Views\Main\IndexEmployee.cshtml" />
+    <Content Include="Views\Main\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ProjectClasses\F_Auth\" />
+    <Folder Include="ProjectClasses\NewFolder1\" />
+    <Folder Include="ProjectClasses\Observer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -245,6 +260,11 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201912291811538_InitialCreate.resx">
+      <DependentUpon>201912291811538_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

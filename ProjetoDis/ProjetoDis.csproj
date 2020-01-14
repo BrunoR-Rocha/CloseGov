@@ -190,6 +190,7 @@
     <Compile Include="Models\CloseGovDb.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="ProjectClasses\Iterator\Iterator.cs" />
     <Compile Include="ProjectClasses\Occurrences\Garbage.cs" />
     <Compile Include="ProjectClasses\Occurrences\Ocurrence.cs" />
     <Compile Include="ProjectClasses\Occurrences\Road_Pavement.cs" />

@@ -4,14 +4,30 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProjetoDis.Models;
+using ProjetoDis.ProjectClasses.Iterator;
 
 namespace ProjetoDis.Controllers
 {
     public class MainController : Controller
     {
+        CloseGovDb db = new CloseGovDb();
+
         //se o utilizador for do tipo Common mostra o respetivo menu inicial
         public ActionResult Index()
         {
+            AlertCollection alertCollection = new AlertCollection();
+
+            Alert[] alerts = db.Alerts.ToArray();
+
+            for (int i = 0; i < alerts.Length; i++) // array.Length = 2
+            {
+                alertCollection[i] = new AlertIt(alerts[i]);
+            }
+
+            AlertIterator alertIterator = alertCollection.CreateIterator() as AlertIterator;
+
+            ViewBag.alertIterator = alertIterator;
+
             return View();
         }
 
@@ -33,10 +49,9 @@ namespace ProjetoDis.Controllers
         }
 
         [HttpPost]
-        public ActionResult Alert(Alert alert)
+        public ActionResult Alert(Alert al)
         {
-            alert = new Alert();
-            
+
             //valores do formulario de alerta
 
             var title = Request["title"];
@@ -55,14 +70,21 @@ namespace ProjetoDis.Controllers
             var num_danger = int.TryParse(danger, out int dangerous);
             var val_date = DateTime.TryParse(date, out DateTime data);
 
-            if (val_date || check || num_danger)
+            if (!val_date || check || !num_danger)
             {
                 return Redirect("/Main/Alert");
             }
             else
             {
-                //guardar na base de dados correta conforme o tipo de ocorrencia
+                Alert alert = new Alert();
+                alert.Title = title;
+                alert.Description = description;
+                alert.Location = region;
+                alert.Date = data;
+                alert.Important = dangerous;
 
+                db.Alerts.Add(alert);
+                db.SaveChanges();
             }
             return Redirect("/Main");
         }

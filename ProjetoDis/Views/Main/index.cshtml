@@ -1,4 +1,5 @@
-﻿
+﻿@using ProjetoDis.ProjectClasses.Iterator
+
 @{
     ViewBag.Title = "index";
 }
@@ -6,8 +7,19 @@
 <h2>Main</h2>
 
 <a class="btn btn-primary" href="/Main/Alert">Alert</a>
-<br/>
+<br />
+
+<h3>Alertas Recentes</h3>
+
+<ul>
+    @for (AlertIt alert = ViewBag.alertIterator.First(); 
+        !ViewBag.alertIterator.IsFinished; alert = ViewBag.alertIterator.Next())
+    {
+        <li>@alert._alert.Title</li>
+    }
+</ul>
 
 @*
-Utilizando um iterator, mostrar todos os pedidos efetuados por clientes ao sistema.
+    Utilizando um iterator, mostrar todos os pedidos efetuados por clientes ao sistema.
 *@
+

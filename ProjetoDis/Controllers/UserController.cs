@@ -12,22 +12,6 @@ namespace ProjetoDis.Controllers
 
         CloseGovDb db = new CloseGovDb();
 
-        // GET: User
-        public ActionResult Index()
-        {
-            //perfil do utilizador 
-            //nova utilizaçao de um possivel iterator
-
-            var user = new User()
-            {
-                Name = "Arturo",
-                Region = "Funchal",
-                Address = "Jardim botanico"
-            };
-
-            return View(user);
-        }
-
         //metodos GET
         public ActionResult Login()
         {
@@ -121,7 +105,7 @@ namespace ProjetoDis.Controllers
 
         public ActionResult Logout()
         {
-            throw new NotImplementedException();
+            return Redirect("/User/Login");
         }
     }
 }

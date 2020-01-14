@@ -118,5 +118,10 @@ namespace ProjetoDis.Controllers
         {
             return Content("Sessao: "+ Session["id"] +" "+ Session["name"]);
         }
+
+        public ActionResult Logout()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

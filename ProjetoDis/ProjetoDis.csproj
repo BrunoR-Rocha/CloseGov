@@ -245,7 +245,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="ProjectClasses\F_Auth\" />
-    <Folder Include="ProjectClasses\NewFolder1\" />
     <Folder Include="ProjectClasses\Observer\" />
   </ItemGroup>
   <ItemGroup>

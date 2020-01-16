@@ -43,6 +43,7 @@ namespace ProjetoDis.Controllers
 
             return alertIterator;
         }
+
         public WarningIterator ReportIterator()
         {
             WarningCollection reportCollection = new WarningCollection();

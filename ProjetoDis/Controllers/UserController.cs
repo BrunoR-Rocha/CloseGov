@@ -27,7 +27,7 @@ namespace ProjetoDis.Controllers
             var check = String.Compare(email, "") == 0;
             check = check || String.Compare(password, "") == 0;
 
-            var firstUser = db.Users.Where(user => user.Email == email).FirstOrDefault();
+            var firstUser = db.Users.Where( user => user.Email == email).FirstOrDefault();
 
             if (check){
                 return Redirect("/User/Login");
@@ -38,13 +38,13 @@ namespace ProjetoDis.Controllers
                {
                    Session["id"] = firstUser.Id;
                    Session["name"] = firstUser.Name;
+                   Session["type"] = firstUser.Type;
 
                    return Redirect("/Main");
                }else{
                    return Redirect("/User/Login");
                }
-            }
-            else
+            }else
             {
                 return Redirect("/User/Register");
             }
@@ -67,13 +67,7 @@ namespace ProjetoDis.Controllers
             var password = Request["password"];
             var pass2 = Request["confirmPassword"];
 
-            var check = String.Compare(name, "") == 0;
-            check = check || String.Compare(email, "") == 0;
-            check = check || String.Compare(nif, "") == 0;
-            check = check || String.Compare(address, "") == 0;
-            check = check || String.Compare(region, "") == 0;
-            check = check || String.Compare(type, "") == 0;
-            check = check || String.Compare(password, "") == 0;
+            var check = verifyData(name, email, nif, address, region, type, password);
 
             var isNumeric = int.TryParse(nif, out int number);
             var type_vallidate = int.TryParse(type, out int type_user);
@@ -98,6 +92,20 @@ namespace ProjetoDis.Controllers
                 return Redirect("/User/Register");
             }
         }
+
+        public bool verifyData(string name, string email, string nif, string address, string region, string type, string password)
+        {
+            var check = String.Compare(name, "") == 0;
+            check = check || String.Compare(email, "") == 0;
+            check = check || String.Compare(nif, "") == 0;
+            check = check || String.Compare(address, "") == 0;
+            check = check || String.Compare(region, "") == 0;
+            check = check || String.Compare(type, "") == 0;
+            check = check || String.Compare(password, "") == 0;
+
+            return check;
+        }
+
         public ActionResult Main()
         {
             return Content("Sessao: "+ Session["id"] +" "+ Session["name"]);
@@ -105,6 +113,10 @@ namespace ProjetoDis.Controllers
 
         public ActionResult Logout()
         {
+            Session["id"] = null;
+            Session["name"] = null;
+            Session["type"] = null;
+
             return Redirect("/User/Login");
         }
     }

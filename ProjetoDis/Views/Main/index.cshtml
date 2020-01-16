@@ -1,23 +1,60 @@
-﻿@using ProjetoDis.ProjectClasses.Iterator
+﻿@using System.Security.Cryptography
+@using ProjetoDis.Models
+@using ProjetoDis.ProjectClasses.Iterator
 
 @{
     ViewBag.Title = "index";
 }
 
 <h2>Main</h2>
-
-<a class="btn btn-primary" href="/Main/Alert">Alert</a>
-<br />
-
-<h3>Alertas Recentes</h3>
-
-<ul>
-    @for (AlertIt alert = ViewBag.alertIterator.First(); 
-        !ViewBag.alertIterator.IsFinished; alert = ViewBag.alertIterator.Next())
+@if (Session["type"] != null)
+{
+    if ( (int) Session["type"] == 1)
     {
-        <li>@alert._alert.Title</li>
+        <a class="btn btn-primary" href="/Main/Alert">Alert</a>
+        <br />
+
+        <h3>Alertas Recentes</h3>
+    
+        <ul>
+            @for (Warning warning = ViewBag.alertIterator.First(); 
+                !ViewBag.alertIterator.IsFinished; warning = ViewBag.alertIterator.Next())
+            {
+                Alert alert = (Alert) warning._warning;
+
+                <li>@alert.Title</li>
+                <p>Description: @alert.Description</p>
+                <p>Location: @alert.Location</p> 
+            }
+        </ul>
     }
-</ul>
+    else
+    {
+        <a class="btn btn-primary" href="/Main/Report">Report</a>
+        <br />
+
+        <h3>Respostas a Alertas Recentes</h3>
+
+        <ul>
+            @for (Warning warning = ViewBag.reportIterator.First();
+                !ViewBag.reportIterator.IsFinished; warning = ViewBag.reportIterator.Next())
+            {
+                Report report = (Report) warning._warning;
+
+                <li>@report.Title</li>
+                <p>Description: @report.Description</p>
+                <p>Location: @report.Location</p>
+
+            }
+        </ul>
+    }
+}
+else
+{
+    <h2>You're not authenticated</h2>
+}
+
+
 
 @*
     Utilizando um iterator, mostrar todos os pedidos efetuados por clientes ao sistema.

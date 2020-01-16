@@ -5,30 +5,58 @@ using System.Web;
 using System.Web.Mvc;
 using ProjetoDis.Models;
 using ProjetoDis.ProjectClasses.Iterator;
+using ProjetoDis.ProjectClasses.Observer;
 
 namespace ProjetoDis.Controllers
 {
     public class MainController : Controller
     {
         CloseGovDb db = new CloseGovDb();
-
+        
         //se o utilizador for do tipo Common mostra o respetivo menu inicial
         public ActionResult Index()
         {
-            AlertCollection alertCollection = new AlertCollection();
+
+            WarningIterator alertIterator = AlertIterator();
+
+            WarningIterator reportIterator = ReportIterator();
+
+            ViewBag.alertIterator = alertIterator;
+
+            ViewBag.reportIterator = reportIterator;
+
+            return View();
+        }
+
+        public WarningIterator AlertIterator()
+        {
+            WarningCollection alertCollection = new WarningCollection();
 
             Alert[] alerts = db.Alerts.ToArray();
 
             for (int i = 0; i < alerts.Length; i++) // array.Length = 2
             {
-                alertCollection[i] = new AlertIt(alerts[i]);
+                alertCollection[i] = new Warning(alerts[i]);
             }
 
-            AlertIterator alertIterator = alertCollection.CreateIterator() as AlertIterator;
+            WarningIterator alertIterator = alertCollection.CreateIterator() as WarningIterator;
 
-            ViewBag.alertIterator = alertIterator;
+            return alertIterator;
+        }
+        public WarningIterator ReportIterator()
+        {
+            WarningCollection reportCollection = new WarningCollection();
 
-            return View();
+            Report[] reports = db.Reports.ToArray();
+
+            for (int i = 0; i < reports.Length; i++) // array.Length = 2
+            {
+                reportCollection[i] = new Warning(reports[i]);
+            }
+
+            WarningIterator reportIterator = reportCollection.CreateIterator() as WarningIterator;
+
+            return reportIterator;
         }
 
         //se o utilizador autenticado for do tipo Employee mostra o respetivo menu inicial
@@ -43,6 +71,28 @@ namespace ProjetoDis.Controllers
             return View();
         }
 
+        public ActionResult Notifications()
+        {
+            if (Session["id"] != null)
+            {
+                int id = (int) Session["id"];
+
+                IQueryable<Notification> notifications = db.Notifications.Where(note => note.User == id);
+
+                List<Notification> listNotifications = new List<Notification>();
+
+                foreach(Notification notification in notifications)
+                {
+                    listNotifications.Add(notification);
+
+                }
+
+                ViewBag.notifications = listNotifications;
+            }
+
+            return View();
+        }
+
         public ActionResult Alert()
         {
             return View();
@@ -51,7 +101,6 @@ namespace ProjetoDis.Controllers
         [HttpPost]
         public ActionResult Alert(Alert al)
         {
-
             //valores do formulario de alerta
 
             var title = Request["title"];
@@ -76,6 +125,16 @@ namespace ProjetoDis.Controllers
             }
             else
             {
+                Subject subject = new Subject();
+
+                IQueryable<User> query = db.Users.Where(user => user.Type == 2);
+
+                foreach (User user in query)
+                {
+                    UserObserver observer = new UserObserver(user.Id);
+                    subject.Attach(observer);
+                }
+
                 Alert alert = new Alert();
                 alert.Title = title;
                 alert.Description = description;
@@ -85,6 +144,10 @@ namespace ProjetoDis.Controllers
 
                 db.Alerts.Add(alert);
                 db.SaveChanges();
+                
+                NotificationData notification = new NotificationData(alert.Id, alert.Title, alert.Description, "Alert");
+
+                subject.Notify(notification);
             }
             return Redirect("/Main");
         }
@@ -97,8 +160,6 @@ namespace ProjetoDis.Controllers
         [HttpPost]
         public ActionResult Report(Report rep)
         {
-            rep = new Report();
-
             var title = Request["title"];
             var description = Request["description"];
             var date = Request["date"];
@@ -110,7 +171,36 @@ namespace ProjetoDis.Controllers
             var val_date = DateTime.TryParse(date, out DateTime data);
 
             //guardar na base de dados respetiva
+            if (!val_date || check)
+            {
+                return Redirect("/Main/Report");
+            }
+            else
+            {
+                Subject subject = new Subject();
 
+                IQueryable<User> query = db.Users.Where(user => user.Type == 1);
+
+                foreach (User user in query)
+                {
+                    UserObserver observer = new UserObserver(user.Id);
+                    subject.Attach(observer);
+                }
+
+                Report report = new Report();
+                report.Title = title;
+                report.Description = description;
+                report.Location = region;
+                report.Date = data;
+
+                db.Reports.Add(report);
+                db.SaveChanges();
+
+                NotificationData notification = new NotificationData(report.Id, report.Title, report.Description, "Report");
+
+                subject.Notify(notification);
+
+            }
             return Redirect("/Main");
         }
     }

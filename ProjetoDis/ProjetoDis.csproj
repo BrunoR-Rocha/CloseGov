@@ -188,9 +188,11 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Alert.cs" />
     <Compile Include="Models\CloseGovDb.cs" />
+    <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="ProjectClasses\Iterator\Iterator.cs" />
+    <Compile Include="ProjectClasses\Observer\Observer.cs" />
     <Compile Include="ProjectClasses\Occurrences\Garbage.cs" />
     <Compile Include="ProjectClasses\Occurrences\Ocurrence.cs" />
     <Compile Include="ProjectClasses\Occurrences\Road_Pavement.cs" />
@@ -242,11 +244,11 @@
     <Content Include="Views\Shared\Occurence_Form.cshtml" />
     <Content Include="Views\Main\IndexEmployee.cshtml" />
     <Content Include="Views\Main\Show.cshtml" />
+    <Content Include="Views\Main\Notifications.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="ProjectClasses\F_Auth\" />
-    <Folder Include="ProjectClasses\Observer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

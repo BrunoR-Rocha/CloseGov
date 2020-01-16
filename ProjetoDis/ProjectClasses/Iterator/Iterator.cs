@@ -7,70 +7,70 @@ using ProjetoDis.Models;
 
 namespace ProjetoDis.ProjectClasses.Iterator
 {
-    public class AlertIt
+    public class Warning
     {
-        public Alert _alert;
+        public Object _warning;
 
-        public AlertIt (Alert alert)
+        public Warning (Object warning)
         {
-            this._alert = alert;
+            this._warning = warning;
         }
     }
 
-    public interface IAlertCollection
+    public interface IWarningCollection
     {
-        IAlertIterator CreateIterator();
+        IWarningIterator CreateIterator();
     }
 
-    public class AlertCollection : IAlertCollection
+    public class WarningCollection : IWarningCollection
     {
-        private ArrayList _alerts = new ArrayList();
-        public IAlertIterator CreateIterator()
+        private ArrayList _warnings = new ArrayList();
+        public IWarningIterator CreateIterator()
         {
-            return new AlertIterator(this);
+            return new WarningIterator(this);
         }
 
         public int Count
         {
-            get { return _alerts.Count; }
+            get { return _warnings.Count; }
         }
         public object this[int index]
         {
-            get { return _alerts[index]; }
-            set { _alerts.Add(value); }
+            get { return _warnings[index]; }
+            set { _warnings.Add(value); }
         }
     }
 
-    public interface IAlertIterator
+    public interface IWarningIterator
     {
-        AlertIt First();
-        AlertIt Next();
+        Warning First();
+        Warning Next();
         bool IsFinished { get; }
-        AlertIt CurrentAlert { get; }
+        Warning CurrentWarning { get; }
     }
 
-    public class AlertIterator : IAlertIterator
+    public class WarningIterator : IWarningIterator
     {
-        private AlertCollection _alerts;
+        private WarningCollection _warnings;
         private int _current = 0;
         //private int _step = 1;
 
-        public AlertIterator(AlertCollection alerts)
+        public WarningIterator(WarningCollection warnings)
         {
-            this._alerts = alerts;
+            this._warnings = warnings;
         }
-        public AlertIt First()
+        public Warning First()
         {
             _current = 0;
-            return _alerts[_current] as AlertIt;
+            return _warnings[_current] as Warning;
         }
 
-        public AlertIt Next()
+        public Warning Next()
         {
             _current++;
             if (!IsFinished)
             {
-                return _alerts[_current] as AlertIt;
+                return _warnings[_current] as Warning;
             }
             else
                 return null;
@@ -78,11 +78,12 @@ namespace ProjetoDis.ProjectClasses.Iterator
 
         public bool IsFinished
         {
-            get { return _current >= _alerts.Count ; }
+            get { return _current >= _warnings.Count ; }
         }
         
-        public AlertIt CurrentAlert {
-            get { return _alerts[_current] as AlertIt; }
+        public Warning CurrentWarning
+        {
+            get { return _warnings[_current] as Warning; }
         }
     }
 }

@@ -10,8 +10,8 @@ namespace ProjetoDis.Models
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Alert> Alerts { get; set; }
-
-        //public DbSet<RestaurantReview> Reviews { get; set; }
+        public DbSet<Report> Reports { get; set; }
+        public DbSet<Notification>Notifications { get; set; }
 
     }
 }

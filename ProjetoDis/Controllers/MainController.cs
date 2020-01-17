@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using ProjetoDis.Models;
 using ProjetoDis.ProjectClasses.Iterator;
 using ProjetoDis.ProjectClasses.Observer;
+using ProjetoDis.ProjectClasses.Templates;
 
 namespace ProjetoDis.Controllers
 {
@@ -102,55 +103,29 @@ namespace ProjetoDis.Controllers
         [HttpPost]
         public ActionResult Alert(Alert al)
         {
+            IDictionary<string, string> requestData = new Dictionary<string, string>();
+
             //valores do formulario de alerta
 
-            var title = Request["title"];
-            var description = Request["description"];
-            var date = Request["date"];
-            var region = Request["local"];
-            var address = Request["address"];
-            var danger = Request["perigo"];
+            requestData["title"] = Request["title"];
+            requestData["description"] = Request["description"];
+            requestData["date"] = Request["date"];
+            requestData["local"] = Request["local"];
+            requestData["address"] = Request["address"];
+            requestData["perigo"] = Request["perigo"];
+
+
             //talvez acrescentar um selector para um dos 3 tipos de ocorrencia
+            AlertTemplate alertTemplate = AlertTemplate.Instance;
 
-            var check = String.Compare(title, "") == 0;
-            check = check || String.Compare(description, "") == 0 || String.Compare(region, "") == 0;
-            check = check || String.Compare(date, "") == 0 || String.Compare(address, "") == 0;
-            check = check || String.Compare(danger, "") == 0;
-
-            var num_danger = int.TryParse(danger, out int dangerous);
-            var val_date = DateTime.TryParse(date, out DateTime data);
-
-            if (!val_date || check || !num_danger)
+            if (alertTemplate.Warning_Template(requestData))
             {
-                return Redirect("/Main/Alert");
+                return Redirect("/Main");
             }
             else
             {
-                Subject subject = new Subject();
-
-                IQueryable<User> query = db.Users.Where(user => user.Type == 2);
-
-                foreach (User user in query)
-                {
-                    UserObserver observer = new UserObserver(user.Id);
-                    subject.Attach(observer);
-                }
-
-                Alert alert = new Alert();
-                alert.Title = title;
-                alert.Description = description;
-                alert.Location = region;
-                alert.Date = data;
-                alert.Important = dangerous;
-
-                db.Alerts.Add(alert);
-                db.SaveChanges();
-                
-                NotificationData notification = new NotificationData(alert.Id, alert.Title, alert.Description, "Alert");
-
-                subject.Notify(notification);
+                return Redirect("/Main/Alert");
             }
-            return Redirect("/Main");
         }
 
         public ActionResult Report()
@@ -161,15 +136,30 @@ namespace ProjetoDis.Controllers
         [HttpPost]
         public ActionResult Report(Report rep)
         {
-            var title = Request["title"];
-            var description = Request["description"];
-            var date = Request["date"];
-            var region = Request["local"];
+            IDictionary<string, string> requestData = new Dictionary<string, string>();
 
+            requestData["title"] = Request["title"];
+            requestData["description"] = Request["description"];
+            requestData["date"] = Request["date"];
+            requestData["local"] = Request["local"];
+            
+
+            ReportTemplate reportTemplate = ReportTemplate.Instance;
+
+            if (reportTemplate.Warning_Template(requestData))
+            {
+                return Redirect("/Main");
+            }
+            else
+            {
+                return Redirect("/Main/Report");
+            }
+            /*
             var check = String.Compare(title, "") == 0 || String.Compare(description, "") == 0;
             check = check || String.Compare(region, "") == 0 || String.Compare(date, "") == 0;
 
             var val_date = DateTime.TryParse(date, out DateTime data);
+            
 
             //guardar na base de dados respetiva
             if (!val_date || check)
@@ -201,8 +191,8 @@ namespace ProjetoDis.Controllers
 
                 subject.Notify(notification);
 
-            }
-            return Redirect("/Main");
+            }*/
+            //return Redirect("/Main");
         }
     }
 }

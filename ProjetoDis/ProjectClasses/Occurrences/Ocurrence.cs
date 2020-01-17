@@ -6,13 +6,13 @@ using System.Web;
 namespace ProjetoDis.ProjectClasses.Occurrences
 {
     public abstract class Ocurrence
-    {
-        //este é o template Method
+    { 
+        //template Method
         public void Occurrence_Template()
         {
             ConfirmOccurrence();
             SaveOccurrenceDb();
-            GetOccurrence();
+            //GetOccurrence();
             UpdateOccurrence();
             SendOccurrence();
         }
@@ -27,14 +27,17 @@ namespace ProjetoDis.ProjectClasses.Occurrences
         public abstract void SaveOccurrenceDb();
 
         //procura a ocorrencia criada
-        public virtual void GetOccurrence()
+        /*
+         public virtual void GetOccurrence()
         {
-            //default - guardar o pedido na camara
+            //default - obter o pedido da camara
         }
+        */
 
         //atualiza os valores da ocorrencia na base de dados
         public virtual void UpdateOccurrence()
         {
+
         }
 
         //elimina uma das ocorrencias criadas

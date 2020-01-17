@@ -197,6 +197,7 @@
     <Compile Include="ProjectClasses\Occurrences\Ocurrence.cs" />
     <Compile Include="ProjectClasses\Occurrences\Road_Pavement.cs" />
     <Compile Include="ProjectClasses\Occurrences\Vegetation.cs" />
+    <Compile Include="ProjectClasses\Templates\Warning.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

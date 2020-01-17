@@ -29,9 +29,12 @@ namespace ProjetoDis.Controllers
 
             var firstUser = db.Users.Where( user => user.Email == email).FirstOrDefault();
 
-            if (check){
-                return Redirect("/User/Login");
-            }else if (firstUser != null)
+            if (check)
+            {
+                ViewBag.alerts = "missing fields";
+                return View();
+            }
+            else if (firstUser != null)
             {
                var verify =  String.Compare(password,firstUser.Password);
                if (verify == 0)
@@ -41,12 +44,17 @@ namespace ProjetoDis.Controllers
                    Session["type"] = firstUser.Type;
 
                    return Redirect("/Main");
-               }else{
-                   return Redirect("/User/Login");
                }
-            }else
+               else
+               {
+                   ViewBag.alerts = "wrong password";
+                   return View();
+                }
+            }
+            else
             {
-                return Redirect("/User/Register");
+                ViewBag.alerts = "wrong email";
+                return View();
             }
         }
 
@@ -72,9 +80,12 @@ namespace ProjetoDis.Controllers
             var isNumeric = int.TryParse(nif, out int number);
             var type_vallidate = int.TryParse(type, out int type_user);
 
-            if (!isNumeric || check || !type_vallidate){
-                return Redirect("/User/Register");
-            }else if (String.Compare(password, pass2) == 0){ 
+            if (!isNumeric || check || !type_vallidate)
+            {
+                ViewBag.alerts = "missing fields";
+                return View();
+            }
+            else if (String.Compare(password, pass2) == 0){ 
                 
                 User newUser = new User();
                 newUser.Email = email;
@@ -84,12 +95,16 @@ namespace ProjetoDis.Controllers
                 newUser.Password = password;
                 newUser.Address = address;
                 newUser.Region = region;
-                db.Users.Add(newUser);
 
+                db.Users.Add(newUser);
                 db.SaveChanges();
+
                 return Redirect("/User/Login");
-            }else{
-                return Redirect("/User/Register");
+            }
+            else
+            {
+                ViewBag.alerts = "matched passwords";
+                return View();
             }
         }
 

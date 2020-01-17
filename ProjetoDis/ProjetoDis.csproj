@@ -193,11 +193,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="ProjectClasses\Iterator\Iterator.cs" />
     <Compile Include="ProjectClasses\Observer\Observer.cs" />
-    <Compile Include="ProjectClasses\Occurrences\Garbage.cs" />
-    <Compile Include="ProjectClasses\Occurrences\Ocurrence.cs" />
-    <Compile Include="ProjectClasses\Occurrences\Road_Pavement.cs" />
-    <Compile Include="ProjectClasses\Occurrences\Vegetation.cs" />
-    <Compile Include="ProjectClasses\Templates\Warning.cs" />
+    <Compile Include="ProjectClasses\Templates\WarningTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

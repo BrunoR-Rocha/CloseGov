@@ -35,7 +35,7 @@ namespace ProjetoDis.Controllers
 
             Alert[] alerts = db.Alerts.ToArray();
 
-            for (int i = 0; i < alerts.Length; i++) // array.Length = 2
+            for (int i = 0; i < alerts.Length; i++) 
             {
                 alertCollection[i] = new Warning(alerts[i]);
             }
@@ -51,7 +51,7 @@ namespace ProjetoDis.Controllers
 
             Report[] reports = db.Reports.ToArray();
 
-            for (int i = 0; i < reports.Length; i++) // array.Length = 2
+            for (int i = 0; i < reports.Length; i++) 
             {
                 reportCollection[i] = new Warning(reports[i]);
             }
@@ -154,45 +154,6 @@ namespace ProjetoDis.Controllers
             {
                 return Redirect("/Main/Report");
             }
-            /*
-            var check = String.Compare(title, "") == 0 || String.Compare(description, "") == 0;
-            check = check || String.Compare(region, "") == 0 || String.Compare(date, "") == 0;
-
-            var val_date = DateTime.TryParse(date, out DateTime data);
-            
-
-            //guardar na base de dados respetiva
-            if (!val_date || check)
-            {
-                return Redirect("/Main/Report");
-            }
-            else
-            {
-                Subject subject = new Subject();
-
-                IQueryable<User> query = db.Users.Where(user => user.Type == 1);
-
-                foreach (User user in query)
-                {
-                    UserObserver observer = new UserObserver(user.Id);
-                    subject.Attach(observer);
-                }
-
-                Report report = new Report();
-                report.Title = title;
-                report.Description = description;
-                report.Location = region;
-                report.Date = data;
-
-                db.Reports.Add(report);
-                db.SaveChanges();
-
-                NotificationData notification = new NotificationData(report.Id, report.Title, report.Description, "Report");
-
-                subject.Notify(notification);
-
-            }*/
-            //return Redirect("/Main");
         }
     }
 }

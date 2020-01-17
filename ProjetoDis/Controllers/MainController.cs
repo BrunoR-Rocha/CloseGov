@@ -6,13 +6,14 @@ using System.Web.Mvc;
 using ProjetoDis.Models;
 using ProjetoDis.ProjectClasses.Iterator;
 using ProjetoDis.ProjectClasses.Observer;
+using ProjetoDis.ProjectClasses.Proxy;
 using ProjetoDis.ProjectClasses.Templates;
 
 namespace ProjetoDis.Controllers
 {
     public class MainController : Controller
     {
-        CloseGovDb db = new CloseGovDb();
+        ProxyDB db = new ProxyDB();
         
         //se o utilizador for do tipo Common mostra o respetivo menu inicial
         public ActionResult Index()
@@ -33,7 +34,7 @@ namespace ProjetoDis.Controllers
         {
             WarningCollection alertCollection = new WarningCollection();
 
-            Alert[] alerts = db.Alerts.ToArray();
+            Alert[] alerts = db.GetAlerts();
 
             for (int i = 0; i < alerts.Length; i++) 
             {
@@ -49,7 +50,7 @@ namespace ProjetoDis.Controllers
         {
             WarningCollection reportCollection = new WarningCollection();
 
-            Report[] reports = db.Reports.ToArray();
+            Report[] reports = db.GetReports();
 
             for (int i = 0; i < reports.Length; i++) 
             {
@@ -79,7 +80,7 @@ namespace ProjetoDis.Controllers
             {
                 int id = (int) Session["id"];
 
-                IQueryable<Notification> notifications = db.Notifications.Where(note => note.User == id);
+                Notification[] notifications = db.GetNotifications(note => note.User == id);
 
                 List<Notification> listNotifications = new List<Notification>();
 
@@ -142,7 +143,6 @@ namespace ProjetoDis.Controllers
             requestData["description"] = Request["description"];
             requestData["date"] = Request["date"];
             requestData["local"] = Request["local"];
-            
 
             ReportTemplate reportTemplate = ReportTemplate.Instance;
 

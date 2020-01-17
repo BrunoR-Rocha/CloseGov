@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using ProjetoDis.Models;
 using ProjetoDis.ProjectClasses.Observer;
+using ProjetoDis.ProjectClasses.Proxy;
 
 namespace ProjetoDis.ProjectClasses.Templates
 {
@@ -38,7 +39,7 @@ namespace ProjetoDis.ProjectClasses.Templates
 
         private int danger;
 
-        CloseGovDb db = new CloseGovDb();
+        ProxyDB db = new ProxyDB();
 
         private AlertTemplate()
         {
@@ -71,8 +72,7 @@ namespace ProjetoDis.ProjectClasses.Templates
             alert.Date = date;
             alert.Important = danger;
 
-            db.Alerts.Add(alert);
-            db.SaveChanges();
+            db.AddAlert(alert);
 
             return new NotificationData(alert.Id, alert.Title, alert.Description, "Alert");
         }
@@ -81,7 +81,7 @@ namespace ProjetoDis.ProjectClasses.Templates
         {
             Subject subject = new Subject();
 
-            IQueryable<User> query = db.Users.Where(user => user.Type == 2);
+            User[] query = db.GetUsers(user => user.Type == 2);
 
             foreach (User user in query)
             {
@@ -118,7 +118,7 @@ namespace ProjetoDis.ProjectClasses.Templates
 
         private DateTime date;
 
-        CloseGovDb db = new CloseGovDb();
+        ProxyDB db = new ProxyDB();
 
         public override bool ValidateData(IDictionary<string, string> request)
         {
@@ -141,10 +141,9 @@ namespace ProjetoDis.ProjectClasses.Templates
             report.Description = request["description"];
             report.Location = request["local"];
             report.Date = date;
-
-            db.Reports.Add(report);
-            db.SaveChanges();
-
+            
+            db.AddReport(report);
+            
             return new NotificationData(report.Id, report.Title, report.Description, "Report");
         }
 
@@ -152,7 +151,7 @@ namespace ProjetoDis.ProjectClasses.Templates
         {
             Subject subject = new Subject();
 
-            IQueryable<User> query = db.Users.Where(user => user.Type == 1);
+            User[] query = db.GetUsers(user => user.Type == 1);
 
             foreach (User user in query)
             {

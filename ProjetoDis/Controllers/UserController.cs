@@ -4,13 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ProjetoDis.Models;
+using ProjetoDis.ProjectClasses.Proxy;
 
 namespace ProjetoDis.Controllers
 {
     public class UserController : Controller
     {
 
-        CloseGovDb db = new CloseGovDb();
+        ProxyDB db = new ProxyDB();
 
         //metodos GET
         public ActionResult Login()
@@ -27,7 +28,7 @@ namespace ProjetoDis.Controllers
             var check = String.Compare(email, "") == 0;
             check = check || String.Compare(password, "") == 0;
 
-            var firstUser = db.Users.Where( user => user.Email == email).FirstOrDefault();
+            var firstUser = db.GetUser(email);
 
             if (check)
             {
@@ -96,8 +97,7 @@ namespace ProjetoDis.Controllers
                 newUser.Address = address;
                 newUser.Region = region;
 
-                db.Users.Add(newUser);
-                db.SaveChanges();
+                db.AddUser(newUser);
 
                 return Redirect("/User/Login");
             }

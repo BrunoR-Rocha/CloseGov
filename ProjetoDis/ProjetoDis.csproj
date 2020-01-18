@@ -240,8 +240,6 @@
     <Content Include="Views\Main\Report.cshtml" />
     <Content Include="Views\Main\Index.cshtml" />
     <Content Include="Views\Shared\Occurence_Form.cshtml" />
-    <Content Include="Views\Main\IndexEmployee.cshtml" />
-    <Content Include="Views\Main\Show.cshtml" />
     <Content Include="Views\Main\Notifications.cshtml" />
   </ItemGroup>
   <ItemGroup>

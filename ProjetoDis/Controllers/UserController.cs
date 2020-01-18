@@ -51,7 +51,7 @@ namespace ProjetoDis.Controllers
                {
                    ViewBag.alerts = "wrong password";
                    return View();
-                }
+               }
             }
             else
             {

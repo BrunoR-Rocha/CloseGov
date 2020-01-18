@@ -11,7 +11,6 @@ namespace ProjetoDis.ProjectClasses.Observer
     public interface IObserver
     {
         void Update(ISubject subject, NotificationData data);
-
     }
 
     public interface ISubject

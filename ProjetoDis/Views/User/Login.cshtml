@@ -4,6 +4,13 @@
 }
 
 <h2>Login</h2>
+@if (Session["alert"] != null)
+{
+<div class="alert alert-success">
+    <strong>Success!</strong> You've sucessfully Registered!
+</div>
+Session["alert"] = null;
+}
 
 @if (ViewBag.alerts == "missing fields")
 {
@@ -23,6 +30,7 @@ else if (ViewBag.alerts == "wrong email")
         <strong>Error!</strong> The email you've inserted doesn't exist! Please try again or <a href="/User/Register">Register</a>
     </div>
 }
+
 <form action="/User/Login" method="POST">
     <div class="form-group">
         <label for="email">Email</label>
@@ -32,6 +40,7 @@ else if (ViewBag.alerts == "wrong email")
         <label for="password">Password</label>
         <input type="password" class="form-control" id="password" placeholder="Enter your Password..." name="password" required>
     </div>
+
     <button type="submit" class="btn btn-primary">Login</button>
 </form>
 <div style="margin-top: 5px;">

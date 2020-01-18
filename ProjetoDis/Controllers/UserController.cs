@@ -44,6 +44,7 @@ namespace ProjetoDis.Controllers
                    Session["name"] = firstUser.Name;
                    Session["type"] = firstUser.Type;
 
+                   Session["alert"] = "success login";
                    return Redirect("/Main");
                }
                else
@@ -99,6 +100,7 @@ namespace ProjetoDis.Controllers
 
                 db.AddUser(newUser);
 
+                Session["alert"] = "register success";
                 return Redirect("/User/Login");
             }
             else

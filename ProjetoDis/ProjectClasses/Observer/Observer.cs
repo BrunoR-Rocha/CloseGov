@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ProjetoDis.Models;
+using ProjetoDis.ProjectClasses.Proxy;
 
 namespace ProjetoDis.ProjectClasses.Observer
 {
@@ -71,7 +72,7 @@ namespace ProjetoDis.ProjectClasses.Observer
 
         public void Update(ISubject subject, NotificationData data)
         {
-            CloseGovDb db = new CloseGovDb();
+            ProxyDB db = new ProxyDB();
 
             Notification note = new Notification();
             switch (data.type)
@@ -90,8 +91,7 @@ namespace ProjetoDis.ProjectClasses.Observer
             note.Title = data.title;
             note.User = employeeId;
 
-            db.Notifications.Add(note);
-            db.SaveChanges();
+            db.AddNotification(note);
 
         }
     }

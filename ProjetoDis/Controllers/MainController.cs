@@ -18,7 +18,6 @@ namespace ProjetoDis.Controllers
         //se o utilizador for do tipo Common mostra o respetivo menu inicial
         public ActionResult Index()
         {
-
             WarningIterator alertIterator = AlertIterator();
 
             WarningIterator reportIterator = ReportIterator();

@@ -12,6 +12,8 @@ namespace ProjetoDis.ProjectClasses.Proxy
             void AddReport(Report report);
             void AddUser(User user);
 
+            void AddNotification(Notification note);
+
             void RemoveAlert(Alert alert);
             void RemoveReport(Report report);
 
@@ -43,6 +45,12 @@ namespace ProjetoDis.ProjectClasses.Proxy
             public void AddUser(User user)
             {
                 db.Users.Add(user);
+                db.SaveChanges();
+            }
+
+            public void AddNotification(Notification note)
+            {
+                db.Notifications.Add(note);
                 db.SaveChanges();
             }
 
@@ -101,6 +109,11 @@ namespace ProjetoDis.ProjectClasses.Proxy
             public void AddUser(User user)
             {
                 _db.AddUser(user);
+            }
+
+            public void AddNotification(Notification note)
+            {
+                _db.AddNotification(note);
             }
 
             public void RemoveAlert(Alert alert)

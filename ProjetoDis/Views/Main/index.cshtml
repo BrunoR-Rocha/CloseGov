@@ -9,8 +9,16 @@
 <h2>Main</h2>
 @if (Session["type"] != null)
 {
-    if ( (int) Session["type"] == 1)
+    if (Session["alert"] != null)
     {
+        <div class="alert alert-success">
+            <strong>Success!</strong> You've Logged In!
+        </div>
+        Session["alert"] = null;
+    }
+
+        if ( (int) Session["type"] == 1)
+        {
         <a class="btn btn-primary" href="/Main/Alert">Alert</a>
         <br />
 
@@ -53,8 +61,6 @@ else
 {
     <h2>You're not authenticated</h2>
 }
-
-
 
 @*
     Utilizando um iterator, mostrar todos os pedidos efetuados por clientes ao sistema.

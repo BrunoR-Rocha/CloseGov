@@ -24,14 +24,13 @@
                     @if (Session["id"] != null)
                     {
                         <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Main", "Index", "Main")</li>
                         <li>@Html.ActionLink("Notifications", "Notifications", "Main")</li>
                         <li>@Html.ActionLink("Logout", "Logout", "User")</li>
                     }
                     else
                     {
                         <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                         <li>@Html.ActionLink("Login", "Login", "User")</li>
                         <li>@Html.ActionLink("Register", "Register", "User")</li>
 

@@ -181,29 +181,70 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912291811538_InitialCreate.cs" />
+    <Compile Include="Migrations\201912291811538_InitialCreate.designer.cs">
+      <DependentUpon>201912291811538_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Alert.cs" />
     <Compile Include="Models\CloseGovDb.cs" />
+    <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="ProjectClasses\Iterator\Iterator.cs" />
+    <Compile Include="ProjectClasses\Observer\Observer.cs" />
+    <Compile Include="ProjectClasses\Proxy\Proxy.cs" />
+    <Compile Include="ProjectClasses\Templates\WarningTemplate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\all.min.css" />
+    <Content Include="Content\argon-dashboard.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\nucleo.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fa-brands-400.svg" />
+    <Content Include="fonts\fa-regular-400.svg" />
+    <Content Include="fonts\fa-solid-900.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\nucleo-icons.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="logo.png" />
+    <Content Include="Scripts\argon-dashboard.min.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\nucleo.eot" />
+    <Content Include="fonts\nucleo.ttf" />
+    <Content Include="fonts\nucleo.woff" />
+    <Content Include="fonts\nucleo.woff2" />
+    <Content Include="fonts\nucleo-icons.eot" />
+    <Content Include="fonts\nucleo-icons.ttf" />
+    <Content Include="fonts\nucleo-icons.woff" />
+    <Content Include="fonts\nucleo-icons.woff2" />
+    <Content Include="fonts\fa-brands-400.eot" />
+    <Content Include="fonts\fa-brands-400.ttf" />
+    <Content Include="fonts\fa-brands-400.woff" />
+    <Content Include="fonts\fa-brands-400.woff2" />
+    <Content Include="fonts\fa-regular-400.eot" />
+    <Content Include="fonts\fa-regular-400.ttf" />
+    <Content Include="fonts\fa-regular-400.woff" />
+    <Content Include="fonts\fa-regular-400.woff2" />
+    <Content Include="fonts\fa-solid-900.eot" />
+    <Content Include="fonts\fa-solid-900.ttf" />
+    <Content Include="fonts\fa-solid-900.woff" />
+    <Content Include="fonts\fa-solid-900.woff2" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -228,10 +269,13 @@
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Main\Alert.cshtml" />
     <Content Include="Views\Main\Report.cshtml" />
-    <Content Include="Views\Main\index.cshtml" />
+    <Content Include="Views\Main\Index.cshtml" />
+    <Content Include="Views\Shared\Occurence_Form.cshtml" />
+    <Content Include="Views\Main\Notifications.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ProjectClasses\F_Auth\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -245,6 +289,11 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201912291811538_InitialCreate.resx">
+      <DependentUpon>201912291811538_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

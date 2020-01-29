@@ -10,7 +10,6 @@ namespace ProjetoDis.Models
 {
     public class User
     {
-
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -23,9 +22,8 @@ namespace ProjetoDis.Models
 
         public int Nif { get; set; }
 
+        public int Type { get; set; }
+
         public string Region { get; set; } // parish - freguesias/ concelhos
-
-
-
     }
 }

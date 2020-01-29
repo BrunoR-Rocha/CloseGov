@@ -3,7 +3,6 @@
     ViewBag.Title = "Register";
 }
 
-<h2>Register</h2>
 <div class="container">
     @if (ViewBag.alerts == "missing fields")
     {
@@ -162,7 +161,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                         </div>
-                                        <input class="form-control" placeholder="Confirmar Password" type="password" id="confirmPassword" name="password" value="" required>
+                                        <input class="form-control" placeholder="Confirmar Password" type="password" id="confirmPassword" name="confirmPassword" value="" required>
                                     </div>
                                 </div>
                                 <div class="text-muted font-italic"><small>password strength: <span class="text-success font-weight-700">strong</span></small></div>

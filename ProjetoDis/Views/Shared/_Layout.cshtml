@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link type="text/css" href="~/Content/argon-dashboard.css?v=1.1.1" rel="stylesheet">
+    <link type="text/css" href="~/Content/argon-dashboard.css?v=v=1.2.0" rel="stylesheet">
     <link href="~/Content/nucleo.css" rel="stylesheet">
     <link href="~/Content/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
@@ -14,20 +14,24 @@
 <body>
 
 
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+    @RenderBody()
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
 
     <!-- Core -->
     <script src="~/Scripts/jquery.min.js"></script>
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/jquery.scrollbar.min.js"></script>
+    <script src="~/Scripts/jquery-scrollLock.min.js"></script>
+    <script src="~/Scripts/js.cookie.js"></script>
+
     <script src="~/Scripts/Chart.min.js"></script>
     <script src="~/Scripts/Chart.extension.js"></script>
 
     <!--  JS -->
-    <script src="~/Scripts/argon-dashboard.min.js?v=1.1.1"></script>
+    <script src="~/Scripts/argon-dashboard.min.js?v=v=1.2.0"></script>
     <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
     <script>
         window.TrackJS &&

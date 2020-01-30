@@ -3,30 +3,39 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link type="text/css" href="~/Content/argon-dashboard.css" rel="stylesheet">
+    <link type="text/css" href="~/Content/argon-dashboard.css?v=1.1.1" rel="stylesheet">
     <link href="~/Content/nucleo.css" rel="stylesheet">
     <link href="~/Content/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 
-
 </head>
 <body>
-    
-    <div class="container body-content">
+
+
         @RenderBody()
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
-    </div>
+
     <!-- Core -->
     <script src="~/Scripts/jquery.min.js"></script>
     <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+    <script src="~/Scripts/Chart.min.js"></script>
+    <script src="~/Scripts/Chart.extension.js"></script>
 
     <!--  JS -->
-    <script src="~/Scripts/argon-dashboard.min.js"></script>
+    <script src="~/Scripts/argon-dashboard.min.js?v=1.1.1"></script>
+    <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+    <script>
+        window.TrackJS &&
+            TrackJS.install({
+                token: "ee6fab19c5a04ac1a32a645abde4613a",
+                application: "argon-dashboard-free"
+            });
+    </script>
 
     @RenderSection("scripts", required: false)
 </body>

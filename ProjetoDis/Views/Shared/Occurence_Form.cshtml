@@ -7,11 +7,11 @@
                     <div class="card">
                         <!-- Card header -->
                         <div class="card-header">
-                            <h3 class="mb-0">Alerta</h3>
+                            <h3 class="mb-0">Reportar Ocorrência</h3>
                         </div>
                         <!-- Card body -->
                         <div class="card-body">
-                            <form>
+                            <form  action="/Main/Alert" method="POST">
                                 <!-- Input groups with icon -->
                                 <label class="form-control-label" for="exampleFormControlInput1">Título</label>
                                 <div class="row">
@@ -21,7 +21,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="fas fa-heading"></i></span>
                                                 </div>
-                                                <input class="form-control" placeholder="Your name" type="text">
+                                                <input class="form-control" placeholder="Insira um título" type="text" id="title" name="Title" required>
                                             </div>
                                         </div>
                                     </div>
@@ -32,7 +32,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" resize="none"></textarea>
+                                            <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" resize="none" name="description" required></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <div class='input-group date' id='datetimepicker1'>
-                                                <input type='text' class="form-control" />
+                                                <input type='text' class="form-control" id="date" name="date" required/>
                                                 <span class="input-group-addon input-group-append">
                                                     <button class="btn btn-outline-primary" type="button" id="button-addon2"> <span class="fa fa-calendar"></span></button>
                                                 </span>
@@ -59,7 +59,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
                                                 </div>
-                                                <input class="form-control" placeholder="Your name" type="text">
+                                                <input class="form-control" placeholder="Insira o local da ocorrência" type="text" id="local" name="local">
                                             </div>
                                         </div>
                                     </div>

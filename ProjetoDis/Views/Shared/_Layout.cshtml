@@ -19,13 +19,13 @@
             <div class="scrollbar-inner">
                 <!-- Brand -->
                 <div class="sidenav-header  d-flex  align-items-center">
-                    <a class="navbar-brand" href="../../pages/dashboards/dashboard.html">
+                    <a class="navbar-brand" href="/Main">
                         <img src="~/logo.png" class="navbar-brand-img" alt="...">
                     </a>
                     <div class=" ml-auto ">
                         <!-- Sidenav toggler -->
                         <div class="sidenav-toggler d-none d-xl-block" data-action="sidenav-unpin" data-target="#sidenav-main">
-                            <div class="sidenav-toggler-inner">
+                            <div class="sidenav-togFgler-inner">
                                 <i class="sidenav-toggler-line"></i>
                                 <i class="sidenav-toggler-line"></i>
                                 <i class="sidenav-toggler-line"></i>
@@ -41,11 +41,11 @@
                             <li class="nav-item menu-item">
                                 <a class="nav-link" href="/Main/Alert">
                                     <i class="ni ni-archive-2 text-green"></i>
-                                    <span class="nav-link-text">Widgets</span>
+                                    <span class="nav-link-text">Alerta</span>
                                 </a>
                             </li>
                             <li class="nav-item menu-item">
-                                <a class="nav-link" href="/Main/Alert">
+                                <a class="nav-link" href="/Main/Report">
                                     <i class="ni ni-chart-pie-35 text-info"></i>
                                     <span class="nav-link-text">Charts</span>
                                 </a>
@@ -283,7 +283,7 @@
                                         <span>Support</span>
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a href="#!" class="dropdown-item">
+                                    <a href="/User/Login" class="dropdown-item">
                                         <i class="ni ni-user-run"></i>
                                         <span>Logout</span>
                                     </a>
@@ -345,11 +345,18 @@
                     });
 
 
+                    /* console.log(window.location.pathname);
+                    if (window.location.pathname == "/Main/Alert") {
+                        $("").find('.nav-link').addClass("active");
+                    } */
 
+
+                    $("[href='" + window.location.pathname + "']").addClass('active');
+                    /*
                     $(".menu-item").click(function (e) {
                        // e.preventDefault();
                         $(this).find('.nav-link').addClass("active");
-                    });
+                    });*/
 
 
                 });

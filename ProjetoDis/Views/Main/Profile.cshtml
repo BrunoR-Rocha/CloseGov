@@ -1,0 +1,24 @@
+﻿@using System.Web.UI.WebControls
+@using ProjetoDis.Models
+
+@{
+    ViewBag.Title = "Profile";
+}
+
+<h2>Notifications</h2>
+
+@if (Session["id"] != null)
+{
+    <ul>
+        @foreach (Notification notification in ViewBag.notifications)
+        {
+            <li>@notification.Title</li>
+            <p>@notification.Description</p>
+        }
+    </ul>
+
+}
+else
+{
+    <h2>404 - ERROR - You're not Authenticated</h2>
+}

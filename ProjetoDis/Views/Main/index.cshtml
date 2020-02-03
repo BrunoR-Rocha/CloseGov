@@ -7,131 +7,231 @@
 }
 
 
-            <!-- Navbar -->
-         
-            <!-- End Navbar -->
-            <!-- Header -->
-            <div class="header bg-primary pb-6">
-                <div class="container-fluid">
-                    <div class="header-body">
-                        <!-- Card stats -->
-                        <div class="row align-items-center py-4">
-                            <div class="col-lg-6 col-7">
-                                <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
-                                <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
-                                    <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-                                        <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-                                        <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Default</li>
-                                    </ol>
-                                </nav>
+<!-- Navbar -->
+<!-- End Navbar -->
+<!-- Header -->
+<div class="header bg-primary pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <!-- Card stats -->
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <h6 class="h2 text-white d-inline-block mb-0">Default</h6>
+                    <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Default</li>
+                        </ol>
+                    </nav>
+                </div>
+
+            </div>
+            <div class="row">
+
+                @if (Session["type"] != null)
+                {
+                    if (Session["alert"] != null)
+                    {
+                        <button class="btn btn-success" data-toggle="sweet-alert" data-sweet-alert="basic">Success</button>
+                        Session["alert"] = null;
+                    }
+
+                    if ((int)Session["type"] == 1)
+                    {
+
+
+
+                        for (Warning warning = ViewBag.alertIterator.First();
+                            !ViewBag.alertIterator.IsFinished; warning = ViewBag.alertIterator.Next())
+                        {
+                            Alert alert = (Alert)warning._warning;
+
+                            <div class="col-xl-3 col-lg-6" style="margin-bottom:20px">
+                                <div class="card card-stats mb-4 mb-xl-0">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">@alert.Title</h5>
+                                                <span class="h2 font-weight-bold mb-0">@alert.Description</span>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                                                    <i class="fas fa-flag"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="mt-3 mb-0 text-muted text-sm">
+                                            <span class="text-success mr-2"><i class="fas fa-map-marker-alt"></i> @alert.Location</span>
+
+                                            <span class="text-nowrap">@alert.Date.Day/@alert.Date.Month/@alert.Date.Year </span>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
 
-                        </div>
-                        <div class="row">
-                            @if (Session["type"] != null)
-                            {
-                                if (Session["alert"] != null)
-                                {
-                                    <button class="btn btn-success" data-toggle="notify" data-placement="top" data-align="center" data-type="success" data-icon="ni ni-bell-55">Success</button>
-                                    <button class="btn btn-success" data-toggle="sweet-alert" data-sweet-alert="success">Success alert</button>
-                                    Session["alert"] = null;
-                                }
 
-                                if ((int)Session["type"] == 1)
-                                {
+                        }
+                    }
+                    else
+                    {
 
+                        for (Warning warning = ViewBag.reportIterator.First();
+                            !ViewBag.reportIterator.IsFinished; warning = ViewBag.reportIterator.Next())
+                        {
+                            Report report = (Report)warning._warning;
 
-
-                                    for (Warning warning = ViewBag.alertIterator.First();
-                                        !ViewBag.alertIterator.IsFinished; warning = ViewBag.alertIterator.Next())
-                                    {
-                                        Alert alert = (Alert)warning._warning;
-
-                                        <div class="col-xl-3 col-lg-6" style="margin-bottom:20px">
-                                            <div class="card card-stats mb-4 mb-xl-0">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <h5 class="card-title text-uppercase text-muted mb-0">@alert.Title</h5>
-                                                            <span class="h2 font-weight-bold mb-0">@alert.Description</span>
-                                                        </div>
-                                                        <div class="col-auto">
-                                                            <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
-                                                                <i class="fas fa-flag"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <p class="mt-3 mb-0 text-muted text-sm">
-                                                        <span class="text-success mr-2"><i class="fas fa-map-marker-alt"></i> @alert.Location</span>
-                                                        <span class="text-nowrap">@alert.Date</span>
-                                                    </p>
+                            <div class="col-xl-3 col-lg-6" style="margin-bottom:20px">
+                                <div class="card card-stats mb-4 mb-xl-0">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h5 class="card-title text-uppercase text-muted mb-0">@report.Title</h5>
+                                                <span class="h2 font-weight-bold mb-0">@report.Description</span>
+                                            </div>
+                                            <div class="col-auto">
+                                                <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                                                    <i class="fas fa-chart-bar"></i>
                                                 </div>
                                             </div>
                                         </div>
-
-                                    }
-                                    <a class="btn btn-icon btn-3 btn-warning" type="button" style="width:50%; margin-left:25%" href="/Main/Alert">
-                                        <span class="btn-inner--icon"><i class="fas fa-exclamation-triangle"></i></span>
-
-                                        <span class="btn-inner--text">Reporte um problema!</span>
-
-                                    </a>
-                                }
-                                else
-                                {
-
-                                    for (Warning warning = ViewBag.reportIterator.First();
-                                        !ViewBag.reportIterator.IsFinished; warning = ViewBag.reportIterator.Next())
-                                    {
-                                        Report report = (Report)warning._warning;
-
-                                        <div class="col-xl-3 col-lg-6" style="margin-bottom:20px">
-                                            <div class="card card-stats mb-4 mb-xl-0">
-                                                <div class="card-body">
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <h5 class="card-title text-uppercase text-muted mb-0">@report.Title</h5>
-                                                            <span class="h2 font-weight-bold mb-0">@report.Description</span>
-                                                        </div>
-                                                        <div class="col-auto">
-                                                            <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                                                                <i class="fas fa-chart-bar"></i>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <p class="mt-3 mb-0 text-muted text-sm">
-                                                        <span class="text-success mr-2"><i class="fas fa-map-marker-alt"></i> @report.Location</span>
-                                                        <span class="text-nowrap">@report.Date</span>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                    }
-                                    <a class="btn btn-icon btn-3 btn-warning" type="button" style="width:50%; margin-left:25%" href="/Main/Report">
-                                        <span class="btn-inner--icon"><i class="fas fa-exclamation-triangle"></i></span>
-
-                                        <span class="btn-inner--text">Reporte um problema!</span>
-
-                                    </a>
-
-                                }
-                            }
-                            else
-                            {
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    <span class="alert-inner--icon"><i class="ni ni-like-2"></i></span>
-                                    <span class="alert-inner--text"><strong>Success!</strong> This is a success alert—check it out!</span>
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
+                                        <p class="mt-3 mb-0 text-muted text-sm">
+                                            <span class="text-success mr-2"><i class="fas fa-map-marker-alt"></i> @report.Location</span>
+                                            <span class="text-nowrap">@report.Date</span>
+                                        </p>
+                                    </div>
                                 </div>
-                            }
+                            </div>
 
-                        </div>
 
-                    </div>
-                </div>
+                        }
+                        <button class="btn btn-icon btn-3 btn-warning" type="button" style="width:50%; margin-left:25%" href="/Main/Report">
+                            <span class="btn-inner--icon"><i class="fas fa-exclamation-triangle"></i></span>
+
+                            <span class="btn-inner--text">Reporte um problema!</span>
+
+                        </button>
+
+
+
+                    }
+                }
             </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt--6">
+    <div class="card">
+        <!-- Card header -->
+        <div class="card-header border-0">
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="mb-0">Lista de ocorrências</h3>
+                </div>
+
+            </div>
+        </div>
+        <!-- Light table -->
+        <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Autor</th>
+                        <th>Importância</th>
+                        <th>Local</th>
+                        <th>Data</th>
+                        <th>Estado</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @for (Warning warning = ViewBag.alertIterator.First();
+                !ViewBag.alertIterator.IsFinished; warning = ViewBag.alertIterator.Next())
+                {
+                    Alert alert = (Alert)warning._warning;
+                    <tbody>
+                        <tr>
+                            <td class="table-user">
+                                <img src="~/user.png" class="avatar rounded-circle mr-3">
+                                <b>@alert.Title</b>
+                            </td>
+                            <td>
+                                @if (@alert.Important == 1)
+                                {
+                                    <span class="badge badge-dot mr-4">
+                                        <i class="bg-yellow"></i>
+                                        <span class="status">Baixa Importância</span>
+                                    </span>
+                                }
+                                @if (@alert.Important == 2)
+                                {
+                                    <span class="badge badge-dot mr-4">
+                                        <i class="bg-orange"></i>
+                                        <span class="status">Média Importância</span>
+                                    </span>
+                                }
+                                @if (@alert.Important == 3)
+                                {
+                                    <span class="badge badge-dot mr-4">
+                                        <i class="bg-danger"></i>
+                                        <span class="status">Elevada Importância</span>
+                                    </span>
+                                }
+                            </td>
+                            <td>
+                                <span class="font-weight-bold">@alert.Location</span>
+                            </td>
+                            <td>
+                                <span class="text-muted">@alert.Date.Day/@alert.Date.Month/@alert.Date.Year</span>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <span class="completion mr-2">60%</span>
+                                    <div>
+                                        <div class="progress">
+                                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="table-actions">
+                                <a href="#!" class="table-action" data-toggle="tooltip"
+                                   data-original-title="Editar ocorrência">
+                                    <i class="fas fa-user-edit"></i>
+                                </a>
+                                <a href="#!" class="table-action table-action-delete" data-toggle="tooltip"
+                                   data-original-title="Apagar ocorrência">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+        </div>
+    </div>
+    <div class="card">
+        <!-- Card header -->
+        <div class="card-header border-0">
+            <div class="row">
+                <div class="col-6">
+                    <h3 class="mb-0">Lista de ocorrências</h3>
+                </div>
+
+            </div>
+        </div>
+        <div class="card widget-calendar">
+            <!-- Card header -->
+            <div class="card-header">
+                <div class="h5 text-muted mb-1 widget-calendar-year"></div>
+                <div class="h3 mb-0 widget-calendar-day"></div>
+            </div>
+            <!-- Card body -->
+            <div class="card-body">
+                <div data-toggle="widget-calendar"></div>
+            </div>
+        </div>
+    </div>
+    <div class="card border-0">
+        <div id="map-custom" class="map-canvas" data-lat="40.748817" data-lng="-73.985428" style="height: 600px;"></div>
+    </div>
+</div>

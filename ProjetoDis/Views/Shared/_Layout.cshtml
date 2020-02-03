@@ -9,6 +9,8 @@
     <link href="~/Content/nucleo.css" rel="stylesheet">
     <link href="~/Content/all.min.css" rel="stylesheet">
     <link href="~/Content/select2.min.css" rel="stylesheet">
+    <link href="~/Content/animate.min.css" rel="stylesheet">
+    <link href="~/Content/sweetalert2.min.css" rel="stylesheet">
     <link type="text/css" href="~/Content/argon-dashboard.css?v=v=1.2.0" rel="stylesheet">
 
 </head>
@@ -310,7 +312,10 @@
             <script src="~/Scripts/js.cookie.js"></script>
             <script src="~/Scripts/jquery.scrollbar.min.js"></script>
             <script src="~/Scripts/jquery-scrollLock.min.js"></script>
+            <script src="~/Scripts/dropzone.min.js"></script>
+            <script src="~/Scripts/bootstrap-notify.min.js"></script>
 
+            <script src="~/Scripts/sweetalert2.min.js"></script>
             <script src="~/Scripts/select2.min.js"></script>
 
             <script src="~/Scripts/moment.min.js"></script>
@@ -329,6 +334,14 @@
             </script>
             <script type="text/javascript">
                 $(function () {
+
+                    var todaysDate = new Date(); // Gets today's date
+     
+    var year = todaysDate.getFullYear();                        // YYYY
+    var month = ("0" + (todaysDate.getMonth() + 1)).slice(-2);  // MM
+    var day = ("0" + todaysDate.getDate()).slice(-2);           // DD
+                    var maxDate = (month + "/" + day + "/" + year);
+
                     $('#datetimepicker1').datetimepicker({
                         icons: {
                             time: "fa fa-clock",
@@ -341,7 +354,9 @@
                             clear: 'fa fa-trash',
                             close: 'fa fa-remove'
                         },
-                        format: 'L'
+                        format: 'DD/MM/YYYY',
+                        maxDate : maxDate
+                        
                     });
 
 

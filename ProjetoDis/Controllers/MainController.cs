@@ -118,13 +118,14 @@ namespace ProjetoDis.Controllers
             //talvez acrescentar um selector para um dos 3 tipos de ocorrencia
             AlertTemplate alertTemplate = AlertTemplate.Instance;
 
+
             if (alertTemplate.Warning_Template(requestData))
             {
-                return Redirect("/Main");
+                return Redirect("/Main/Ahhh");
             }
             else
             {
-                return Redirect("/Main/Alert");
+                return Redirect("/Main/Teste");
             }
         }
 

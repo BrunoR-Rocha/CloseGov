@@ -25,6 +25,7 @@ namespace ProjetoDis.Controllers
             var email = Request["email"];       // ou talvez utilizar o nif - tmbm pode ser chave primaria
             var password = Request["Password"];
 
+
             var check = String.Compare(email, "") == 0;
             check = check || String.Compare(password, "") == 0;
 

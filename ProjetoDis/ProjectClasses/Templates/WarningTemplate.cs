@@ -51,7 +51,7 @@ namespace ProjetoDis.ProjectClasses.Templates
         {
             var check = true;
 
-            foreach (var item in request)
+            foreach (var item in request)   
             {
                 check = check && String.Compare(item.Value, "") != 0;
             }

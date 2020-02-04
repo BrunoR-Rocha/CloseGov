@@ -98,6 +98,14 @@ namespace ProjetoDis.Controllers
         public ActionResult Alert()
         {
             return View();
+        }       
+        public ActionResult Calendar()
+        {
+            return View();
+        }        
+        public ActionResult Map()
+        {
+            return View();
         }
 
         [HttpPost]
@@ -121,11 +129,11 @@ namespace ProjetoDis.Controllers
 
             if (alertTemplate.Warning_Template(requestData))
             {
-                return Redirect("/Main/Ahhh");
+                return Redirect("/Main");
             }
             else
             {
-                return Redirect("/Main/Teste");
+                return Redirect("/Main/Alert");
             }
         }
 

@@ -252,6 +252,7 @@
     <Content Include="Scripts\bootstrap-notify.min.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
     <Content Include="Scripts\JavaScript.js" />
+    <Content Include="Scripts\list.min.js" />
     <Content Include="Scripts\sweetalert2.min.js" />
     <Content Include="Scripts\select2.min.js" />
     <Content Include="Scripts\moment.min.js" />
@@ -293,6 +294,8 @@
     <Content Include="Views\Shared\Occurence_Form.cshtml" />
     <Content Include="Views\Main\Notifications.cshtml" />
     <Content Include="Views\Main\Profile.cshtml" />
+    <Content Include="Views\Main\Calendar.cshtml" />
+    <Content Include="Views\Main\Map.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

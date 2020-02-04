@@ -1,24 +1,17 @@
-﻿@using System.Web.UI.WebControls
+﻿@using System.Security.Cryptography
 @using ProjetoDis.Models
+@using ProjetoDis.ProjectClasses.Iterator
 
-@{
-    ViewBag.Title = "Profile";
-}
+<!DOCTYPE html>
 
-<h2>Notifications</h2>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
 
-@if (Session["id"] != null)
-{
-    <ul>
-        @foreach (Notification notification in ViewBag.notifications)
-        {
-            <li>@notification.Title</li>
-            <p>@notification.Description</p>
-        }
-    </ul>
-
-}
-else
-{
-    <h2>404 - ERROR - You're not Authenticated</h2>
-}
+    </div>
+</body>
+</html>

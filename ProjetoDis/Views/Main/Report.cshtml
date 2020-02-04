@@ -25,19 +25,33 @@
     </div>
 </div>
 <!-- Page content -->
-@{
-    Html.RenderPartial("Occurence_Form");
-}
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col-lg-10 offset-md-1">
+            <div class="card-wrapper">
+                <!-- Input groups -->
+                <div class="card">
+                    <!-- Card header -->
+                    <div class="card-header">
+                        <h3 class="mb-0">Reportar Ocorrência</h3>
+                    </div>
+                    <!-- Card body -->
+                    <div class="card-body">
 
-<button class="btn btn-outline-info" data-toggle="sweet-alert" data-sweet-alert="success" type="submit">
-    <span class="btn-inner--icon"><i class="ni ni-bell-55"></i></span>
-    <span class="btn-inner--text">Submeter reporte</span>
-</button>
-</form>
-</div>
-</div>
-</div>
-</div>
-</div>
+                        <form action="/Main/Report" method="POST">
+                            @{
+                                Html.RenderPartial("Occurence_Form");
+                            }
+
+                            <button class="btn btn-outline-info" data-toggle="sweet-alert" data-sweet-alert="success" type="submit">
+                                <span class="btn-inner--icon"><i class="ni ni-bell-55"></i></span>
+                                <span class="btn-inner--text">Submeter reporte</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>

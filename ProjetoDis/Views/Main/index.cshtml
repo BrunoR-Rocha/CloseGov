@@ -7,9 +7,6 @@
 }
 
 
-<!-- Navbar -->
-<!-- End Navbar -->
-<!-- Header -->
 <div class="header bg-primary pb-6">
     <div class="container-fluid">
         <div class="header-body">
@@ -37,84 +34,6 @@
                         Session["alert"] = null;
                     }
 
-                    if ((int)Session["type"] == 1)
-                    {
-
-
-
-                        for (Warning warning = ViewBag.alertIterator.First();
-                            !ViewBag.alertIterator.IsFinished; warning = ViewBag.alertIterator.Next())
-                        {
-                            Alert alert = (Alert)warning._warning;
-
-                            <div class="col-xl-3 col-lg-6" style="margin-bottom:20px">
-                                <div class="card card-stats mb-4 mb-xl-0">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <h5 class="card-title text-uppercase text-muted mb-0">@alert.Title</h5>
-                                                <span class="h2 font-weight-bold mb-0">@alert.Description</span>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
-                                                    <i class="fas fa-flag"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p class="mt-3 mb-0 text-muted text-sm">
-                                            <span class="text-success mr-2"><i class="fas fa-map-marker-alt"></i> @alert.Location</span>
-
-                                            <span class="text-nowrap">@alert.Date.Day/@alert.Date.Month/@alert.Date.Year </span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        }
-                    }
-                    else
-                    {
-
-                        for (Warning warning = ViewBag.reportIterator.First();
-                            !ViewBag.reportIterator.IsFinished; warning = ViewBag.reportIterator.Next())
-                        {
-                            Report report = (Report)warning._warning;
-
-                            <div class="col-xl-3 col-lg-6" style="margin-bottom:20px">
-                                <div class="card card-stats mb-4 mb-xl-0">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <h5 class="card-title text-uppercase text-muted mb-0">@report.Title</h5>
-                                                <span class="h2 font-weight-bold mb-0">@report.Description</span>
-                                            </div>
-                                            <div class="col-auto">
-                                                <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
-                                                    <i class="fas fa-chart-bar"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p class="mt-3 mb-0 text-muted text-sm">
-                                            <span class="text-success mr-2"><i class="fas fa-map-marker-alt"></i> @report.Location</span>
-                                            <span class="text-nowrap">@report.Date</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        }
-                        <button class="btn btn-icon btn-3 btn-warning" type="button" style="width:50%; margin-left:25%" href="/Main/Report">
-                            <span class="btn-inner--icon"><i class="fas fa-exclamation-triangle"></i></span>
-
-                            <span class="btn-inner--text">Reporte um problema!</span>
-
-                        </button>
-
-
-
-                    }
                 }
             </div>
         </div>
@@ -132,15 +51,15 @@
             </div>
         </div>
         <!-- Light table -->
-        <div class="table-responsive">
+        <div class="table-responsive" data-toggle="list" data-list-values='["Autor", "Importância", "Local", "Data", "Estado"]'>
             <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                     <tr>
-                        <th>Autor</th>
-                        <th>Importância</th>
-                        <th>Local</th>
-                        <th>Data</th>
-                        <th>Estado</th>
+                        <th scope="col" class="sort" data-sort="Autor">Autor</th>
+                        <th scope="col" class="sort" data-sort="Importância">Importância</th>
+                        <th scope="col" class="sort" data-sort="Local">Local</th>
+                        <th scope="col" class="sort" data-sort="Data">Data</th>
+                        <th scope="col" class="sort" data-sort="Estado">Estado</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -148,13 +67,14 @@
                 !ViewBag.alertIterator.IsFinished; warning = ViewBag.alertIterator.Next())
                 {
                     Alert alert = (Alert)warning._warning;
-                    <tbody>
+                    <tbody class="list">
                         <tr>
-                            <td class="table-user">
+
+                            <td class="Autor">
                                 <img src="~/user.png" class="avatar rounded-circle mr-3">
                                 <b>@alert.Title</b>
                             </td>
-                            <td>
+                            <td class="Impotância">
                                 @if (@alert.Important == 1)
                                 {
                                     <span class="badge badge-dot mr-4">
@@ -177,15 +97,14 @@
                                     </span>
                                 }
                             </td>
-                            <td>
+                            <td class="Local">
                                 <span class="font-weight-bold">@alert.Location</span>
                             </td>
-                            <td>
+                            <td class="Data">
                                 <span class="text-muted">@alert.Date.Day/@alert.Date.Month/@alert.Date.Year</span>
                             </td>
-                            <td>
+                            <td class="Estado">
                                 <div class="d-flex align-items-center">
-                                    <span class="completion mr-2">60%</span>
                                     <div>
                                         <div class="progress">
                                             <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
@@ -205,8 +124,34 @@
                             </td>
                         </tr>
                     </tbody>
+
                 }
             </table>
+        </div>
+        <div class="card-footer py-4">
+            <nav aria-label="...">
+                <ul class="pagination justify-content-end mb-0">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">
+                            <i class="fas fa-angle-left"></i>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                    </li>
+                    <li class="page-item active">
+                        <a class="page-link" href="#">1</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">
+                            <i class="fas fa-angle-right"></i>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
     <div class="card">

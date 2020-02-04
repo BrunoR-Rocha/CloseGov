@@ -25,44 +25,58 @@
     </div>
 </div>
 <!-- Page content -->
-@{
-    Html.RenderPartial("Occurence_Form");
-}
-<label class="form-control-label" for="exampleFormControlInput1">Morada</label>
-<div class="row">
-    <div class="col-md-12">
-        <div class="form-group">
-            <div class="input-group input-group-merge">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-home"></i></span>
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col-lg-10 offset-md-1">
+            <div class="card-wrapper">
+                <!-- Input groups -->
+                <div class="card">
+                    <!-- Card header -->
+                    <div class="card-header">
+                        <h3 class="mb-0">Reportar Ocorrência</h3>
+                    </div>
+                    <!-- Card body -->
+                    <div class="card-body">
+
+                        <form action="/Main/Alert" method="POST">
+                            @{
+                                Html.RenderPartial("Occurence_Form");
+                            }
+                            <label class="form-control-label" for="exampleFormControlInput1">Morada</label>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="input-group input-group-merge">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-home"></i></span>
+                                            </div>
+                                            <input class="form-control" placeholder="Your name" type="text" name="address" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <label class="form-control-label" for="exampleFormControlInput1">Perigo</label>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <select class="form-control" data-toggle="select" data-minimum-results-for-search="Infinity" name="perigo">
+                                            <option value="3">Alto</option>
+                                            <option value="2">Médio</option>
+                                            <option value="1">Baixo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-outline-info" data-toggle="sweet-alert" data-sweet-alert="success" type="submit">
+                                <span class="btn-inner--icon"><i class="ni ni-bell-55"></i></span>
+                                <span class="btn-inner--text">Submeter alerta</span>
+                            </button>
+                        </form>
+                    </div>
                 </div>
-                <input class="form-control" placeholder="Your name" type="text">
             </div>
         </div>
     </div>
-</div>
-<label class="form-control-label" for="exampleFormControlInput1">Perigo</label>
-
-<div class="row">
-    <div class="col-md-12">
-        <div class="form-group">
-            <select class="form-control" data-toggle="select" data-minimum-results-for-search="Infinity">
-                <option>Alto</option>
-                <option>Médio</option>
-                <option>Baixo</option>
-            </select>
-        </div>
-    </div>
-</div>
-<button class="btn btn-outline-info" data-toggle="sweet-alert" data-sweet-alert="success" type="submit">
-    <span class="btn-inner--icon"><i class="ni ni-bell-55"></i></span>
-    <span class="btn-inner--text">Submeter alerta</span>
-</button>
-</form>
-</div>
-</div>
-</div>
-</div>
-</div>
 
 </div>

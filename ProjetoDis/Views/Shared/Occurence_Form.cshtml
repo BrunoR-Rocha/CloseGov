@@ -1,97 +1,111 @@
-﻿                      
-                                    <!-- Input groups with icon -->
-                                    <label class="form-control-label" for="exampleFormControlInput1">Título</label>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <div class="input-group input-group-merge">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="fas fa-heading"></i></span>
-                                                    </div>
-                                                    <input class="form-control" placeholder="Insira um título" type="text" id="title" name="Title" required>
-                                                </div>
-                                            </div>
-                                        </div>
+﻿<!-- Input groups with icon -->
+<label class="form-control-label" for="exampleFormControlInput1">Título</label>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <div class="input-group input-group-merge">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-heading"></i></span>
+                </div>
+                <input class="form-control" placeholder="Insira um título" type="text" id="title" name="Title" required>
+            </div>
+        </div>
+    </div>
 
-                                    </div>
-                                    <label class="form-control-label" for="exampleFormControlInput1">Descrição</label>
+</div>
+<label class="form-control-label" for="exampleFormControlInput1">Descrição</label>
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" resize="none" name="description" required></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Input groups with icon -->
-                                    <label class="form-control-label" for="exampleFormControlInput1">Data</label>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <textarea class="form-control" id="exampleFormControlTextarea2" rows="3" resize="none" name="description" required></textarea>
+        </div>
+    </div>
+</div>
+<!-- Input groups with icon -->
+<label class="form-control-label" for="exampleFormControlInput1">Data</label>
 
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <div class='input-group date' id='datetimepicker1'>
-                                                    <input type='text' class="form-control" id="date" name="date" required />
-                                                    <span class="input-group-addon input-group-append">
-                                                        <button class="btn btn-outline-primary" type="button" id="button-addon2"> <span class="fa fa-calendar"></span></button>
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <label class="form-control-label" for="exampleFormControlInput1">Localidade</label>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <div class="input-group input-group-merge">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
-                                                    </div>
-                                                    <input class="form-control" placeholder="Insira o local da ocorrência" type="text" id="local" name="local">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker1'>
+                <input type='text' class="form-control" id="date" name="date" required />
+                <span class="input-group-addon input-group-append">
+                    <button class="btn btn-outline-primary" type="button" id="button-addon2"> <span class="fa fa-calendar"></span></button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<label class="form-control-label" for="exampleFormControlInput1">Localidade</label>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <div class="input-group input-group-merge">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-map-marked-alt"></i></span>
+                </div>
+                <input class="form-control" placeholder="Insira o local da ocorrência" type="text" id="local" name="local">
+            </div>
+        </div>
+    </div>
+</div>
 
-                                    <label class="form-control-label" for="exampleFormControlInput1">Fotografias</label>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <!-- Multiple -->
-                                                <div class="dropzone dropzone-multiple" data-toggle="dropzone" data-dropzone-multiple data-dropzone-url="http://">
-                                                    <div class="fallback">
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="customFileUploadMultiple" multiple>
-                                                            <label class="custom-file-label" for="customFileUploadMultiple">Insira o ficheiro</label>
-                                                        </div>
-                                                    </div>
-                                                    <ul class="dz-preview dz-preview-multiple list-group list-group-lg list-group-flush">
-                                                        <li class="list-group-item px-0">
-                                                            <div class="row align-items-center">
-                                                                <div class="col-auto">
-                                                                    <div class="avatar">
-                                                                        <img class="avatar-img rounded" src="..." alt="..." data-dz-thumbnail>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col ml--3">
-                                                                    <h4 class="mb-1" data-dz-name>...</h4>
-                                                                    <p class="small text-muted mb-0" data-dz-size>...</p>
-                                                                </div>
-                                                                <div class="col-auto">
-                                                                    <div class="dropdown">
-                                                                        <a href="#" class="dropdown-ellipses dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                            <i class="fe fe-more-vertical"></i>
-                                                                        </a>
-                                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                                            <a href="#" class="dropdown-item" data-dz-remove>
-                                                                                Remover
-                                                                            </a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
+
+<label class="form-control-label" for="exampleFormControlInput1">Morada</label>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <div class="input-group input-group-merge">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-home"></i></span>
+                </div>
+                <input class="form-control" placeholder="Your name" type="text" name="address" id="address" required>
+            </div>
+        </div>
+    </div>
+</div>
+
+<label class="form-control-label" for="exampleFormControlInput1">Fotografias</label>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <!-- Multiple -->
+            <div class="dropzone dropzone-multiple" data-toggle="dropzone" data-dropzone-multiple data-dropzone-url="http://">
+                <div class="fallback">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="customFileUploadMultiple" multiple>
+                        <label class="custom-file-label" for="customFileUploadMultiple">Insira o ficheiro</label>
+                    </div>
+                </div>
+                <ul class="dz-preview dz-preview-multiple list-group list-group-lg list-group-flush">
+                    <li class="list-group-item px-0">
+                        <div class="row align-items-center">
+                            <div class="col-auto">
+                                <div class="avatar">
+                                    <img class="avatar-img rounded" src="..." alt="..." data-dz-thumbnail>
+                                </div>
+                            </div>
+                            <div class="col ml--3">
+                                <h4 class="mb-1" data-dz-name>...</h4>
+                                <p class="small text-muted mb-0" data-dz-size>...</p>
+                            </div>
+                            <div class="col-auto">
+                                <div class="dropdown">
+                                    <a href="#" class="dropdown-ellipses dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fe fe-more-vertical"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="#" class="dropdown-item" data-dz-remove>
+                                            Remover
+                                        </a>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

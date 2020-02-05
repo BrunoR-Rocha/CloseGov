@@ -30,7 +30,13 @@
                 {
                     if (Session["alert"] != null)
                     {
-                        <button class="btn btn-success" data-toggle="sweet-alert" data-sweet-alert="basic">Success</button>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <span class="alert-icon"><i class="ni ni-like-2"></i></span>
+                    <span class="alert-text"><strong>Sucesso!</strong> Iniciou sessão corretamente</span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
                         Session["alert"] = null;
                     }
 
@@ -51,16 +57,16 @@
             </div>
         </div>
         <!-- Light table -->
-        <div class="table-responsive" data-toggle="list" data-list-values='["Autor", "Importância", "Local", "Data", "Estado"]'>
+        <div class="table-responsive" data-toggle="list" data-list-values='["autor", "importância", "local", "data"]'>
             <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                     <tr>
-                        <th scope="col" class="sort" data-sort="Autor">Autor</th>
-                        <th scope="col" class="sort" data-sort="Importância">Importância</th>
-                        <th scope="col" class="sort" data-sort="Local">Local</th>
-                        <th scope="col" class="sort" data-sort="Data">Data</th>
-                        <th scope="col" class="sort" data-sort="Estado">Estado</th>
-                        <th></th>
+                        <th scope="col" class="sort" data-sort="autor">Autor</th>
+                        <th scope="col" class="sort" data-sort="importancia">Importância</th>
+                        <th scope="col" class="sort" data-sort="local">Local</th>
+                        <th scope="col" class="sort" data-sort="data">Data</th>
+                        <th scope="col" >Estado</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 @for (Warning warning = ViewBag.alertIterator.First();
@@ -70,11 +76,11 @@
                     <tbody class="list">
                         <tr>
 
-                            <td class="Autor">
+                            <td class="autor">
                                 <img src="~/user.png" class="avatar rounded-circle mr-3">
                                 <b>@alert.Title</b>
                             </td>
-                            <td class="Impotância">
+                            <td>
                                 @if (@alert.Important == 1)
                                 {
                                     <span class="badge badge-dot mr-4">
@@ -97,13 +103,13 @@
                                     </span>
                                 }
                             </td>
-                            <td class="Local">
+                            <td>
                                 <span class="font-weight-bold">@alert.Location</span>
                             </td>
-                            <td class="Data">
+                            <td>
                                 <span class="text-muted">@alert.Date.Day/@alert.Date.Month/@alert.Date.Year</span>
                             </td>
-                            <td class="Estado">
+                            <td>
                                 <div class="d-flex align-items-center">
                                     <div>
                                         <div class="progress">

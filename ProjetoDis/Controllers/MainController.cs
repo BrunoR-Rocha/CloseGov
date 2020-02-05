@@ -26,6 +26,8 @@ namespace ProjetoDis.Controllers
 
             ViewBag.reportIterator = reportIterator;
 
+            Notifications();
+
             return View();
         }
 
@@ -97,14 +99,29 @@ namespace ProjetoDis.Controllers
 
         public ActionResult Alert()
         {
+            Notifications();
             return View();
         }       
         public ActionResult Calendar()
         {
+            Notifications();
             return View();
         }        
         public ActionResult Map()
         {
+            Notifications();
+            return View();
+        }
+        
+        public ActionResult MapReport()
+        {
+            Notifications();
+            return View();
+        }
+                
+        public ActionResult Profile()
+        {
+            Notifications();
             return View();
         }
 
@@ -139,6 +156,7 @@ namespace ProjetoDis.Controllers
 
         public ActionResult Report()
         {
+            Notifications();
             return View();
         }
 
@@ -150,6 +168,7 @@ namespace ProjetoDis.Controllers
             requestData["title"] = Request["title"];
             requestData["description"] = Request["description"];
             requestData["date"] = Request["date"];
+            requestData["address"] = Request["address"];
             requestData["local"] = Request["local"];
 
             ReportTemplate reportTemplate = ReportTemplate.Instance;

@@ -140,6 +140,7 @@ namespace ProjetoDis.ProjectClasses.Templates
             report.Title = request["title"];
             report.Description = request["description"];
             report.Location = request["local"];
+            report.Address = request["address"];
             report.Date = date;
             
             db.AddReport(report);

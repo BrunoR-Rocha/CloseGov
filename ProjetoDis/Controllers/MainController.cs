@@ -9,6 +9,8 @@ using ProjetoDis.ProjectClasses.Observer;
 using ProjetoDis.ProjectClasses.Proxy;
 using ProjetoDis.ProjectClasses.Templates;
 
+using System.Web.Script.Serialization;
+
 namespace ProjetoDis.Controllers
 {
     public class MainController : Controller
@@ -102,6 +104,41 @@ namespace ProjetoDis.Controllers
             Notifications();
             return View();
         }       
+
+
+
+        public string GetAlerts()
+        {
+            WarningIterator iterator = AlertIterator();
+
+            List<Alert> alertsList = new List<Alert>();
+
+            for (Warning warning = iterator.First(); !iterator.IsFinished; warning = iterator.Next())
+            {
+                alertsList.Add((Alert)warning._warning);
+            }
+
+            return new JavaScriptSerializer().Serialize(alertsList);
+        }
+
+
+
+        public string GetReports()
+        {
+            WarningIterator iterator = ReportIterator();
+
+            List<Report> reportsList = new List<Report>();
+
+            for (Warning warning = iterator.First(); !iterator.IsFinished; warning = iterator.Next())
+            {
+                reportsList.Add((Report)warning._warning);
+            }
+
+            return new JavaScriptSerializer().Serialize(reportsList);
+
+        }
+
+
         public ActionResult Calendar()
         {
             Notifications();

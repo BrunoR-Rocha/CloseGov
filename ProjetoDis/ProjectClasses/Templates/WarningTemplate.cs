@@ -69,6 +69,7 @@ namespace ProjetoDis.ProjectClasses.Templates
             alert.Title = request["title"];
             alert.Description = request["description"];
             alert.Location = request["local"];
+            alert.Address = request["address"];
             alert.Date = date;
             alert.Important = danger;
 

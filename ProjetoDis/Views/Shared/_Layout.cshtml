@@ -354,13 +354,31 @@
                     url: '/Main/UpdateAlert',
                     data: {
                         'id': $(this).attr('alert_id'),
-                        'status': $(this).val()
+                        'status': $(this).val(),
+                        'type' : '0'
                     },
                     success: function (data) {
                        
                     }
                 });
             });
+
+            $('.comment').blur(function () {
+                $.ajax({
+                    type: 'get',
+                    url: '/Main/UpdateAlert',
+                    data: {
+                        'id': $(this).attr('alert_id'),
+                        'comment': $(this).val(),
+                        'type' : '1'
+                    },
+                    success: function (data) {
+                       
+                    }
+                });
+            });
+
+
 
 
 

@@ -142,10 +142,22 @@ namespace ProjetoDis.Controllers
         {
 
             int AlertID = 0;
+            string value = "";
+
             Int32.TryParse(Request.QueryString["id"], out AlertID);
             string status = Request.QueryString["status"];
+            string comment = Request.QueryString["comment"];
+            string type = Request.QueryString["type"];
 
-            db.UpdateAlert(AlertID, status);
+            if (type == "0")
+            {
+                value = status;
+            } else
+            {
+                value = comment;
+            }
+
+            db.UpdateAlert(AlertID, value, type);
 
             return Request.QueryString["id"];
 

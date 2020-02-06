@@ -24,7 +24,7 @@ namespace ProjetoDis.ProjectClasses.Proxy
             User[] GetUsers(Func<User, bool>predicate);
             Notification[] GetNotifications(Func<Notification, bool>predicate);
             User GetUser(string email);
-            void UpdateAlert(int id, string status);
+            void UpdateAlert(int id, string value, string type);
 
     }
 
@@ -94,9 +94,16 @@ namespace ProjetoDis.ProjectClasses.Proxy
             }
 
 
-            public void UpdateAlert(int id, string status)
+            public void UpdateAlert(int id, string value, string type)
             {
-                db.Alerts.FirstOrDefault(x => x.Id == id).Status = status;
+            if (type == "0")
+            {
+                db.Alerts.FirstOrDefault(x => x.Id == id).Status = value;
+            }
+            else
+            {
+                db.Alerts.FirstOrDefault(x => x.Id == id).Comment = value;
+            }
                 db.SaveChanges();
             }
 
@@ -162,9 +169,9 @@ namespace ProjetoDis.ProjectClasses.Proxy
                 return _db.GetUser(email);
             }
 
-            public void UpdateAlert(int id, string status)
+            public void UpdateAlert(int id, string value, string type)
             {
-                _db.UpdateAlert(id, status);
+                _db.UpdateAlert(id, value, type);
             }
 
         }

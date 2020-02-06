@@ -37,7 +37,7 @@ namespace ProjetoDis.ProjectClasses.Templates
 
         private DateTime date;
 
-        private int danger;
+        private int danger, user;
 
         ProxyDB db = new ProxyDB();
 
@@ -60,7 +60,9 @@ namespace ProjetoDis.ProjectClasses.Templates
 
             var num_danger = int.TryParse(request["perigo"], out danger);
 
-            return val_date && check && num_danger ;
+            var user_id = int.TryParse(request["user"], out user);
+
+            return val_date && check && num_danger && user_id;
         }
 
         public override NotificationData CreateWarning(IDictionary<string, string> request)
@@ -70,7 +72,10 @@ namespace ProjetoDis.ProjectClasses.Templates
             alert.Description = request["description"];
             alert.Location = request["local"];
             alert.Address = request["address"];
+            alert.UserID = user;
             alert.Date = date;
+            alert.Status = "Em Espera";
+            alert.Comment = "";
             alert.Important = danger;
 
             db.AddAlert(alert);
@@ -118,6 +123,7 @@ namespace ProjetoDis.ProjectClasses.Templates
         private static readonly object padlock = new object();
 
         private DateTime date;
+        private int user;
 
         ProxyDB db = new ProxyDB();
 
@@ -132,7 +138,10 @@ namespace ProjetoDis.ProjectClasses.Templates
 
             var val_date = DateTime.TryParse(request["date"], out date);
 
-            return val_date && check;
+            var user_id = int.TryParse(request["user"], out user);
+
+
+            return val_date && check && user_id;
         }
 
         public override NotificationData CreateWarning(IDictionary<string, string> request)
@@ -141,6 +150,7 @@ namespace ProjetoDis.ProjectClasses.Templates
             report.Title = request["title"];
             report.Description = request["description"];
             report.Location = request["local"];
+            report.UserID = user;
             report.Address = request["address"];
             report.Date = date;
             

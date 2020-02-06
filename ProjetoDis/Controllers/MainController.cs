@@ -175,7 +175,7 @@ namespace ProjetoDis.Controllers
             requestData["local"] = Request["local"];
             requestData["address"] = Request["address"];
             requestData["perigo"] = Request["perigo"];
-
+            requestData["user"] = "" + Session["id"];
 
             //talvez acrescentar um selector para um dos 3 tipos de ocorrencia
             AlertTemplate alertTemplate = AlertTemplate.Instance;
@@ -207,6 +207,7 @@ namespace ProjetoDis.Controllers
             requestData["date"] = Request["date"];
             requestData["address"] = Request["address"];
             requestData["local"] = Request["local"];
+            requestData["user"] = "" + Session["id"];
 
             ReportTemplate reportTemplate = ReportTemplate.Instance;
 

@@ -15,5 +15,7 @@ namespace ProjetoDis.Models
         public string Location { get; set; }
         public string Address { get; set; }
         public int UserID { get; set; }
+        public string Status { get; set; }
+        public string Comment { get; set; }
     }
 }

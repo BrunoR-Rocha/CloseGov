@@ -78,9 +78,12 @@
             <tbody class="list">
                 @if ((int)Session["type"] == 1)
                 {
-                <tr>
-                    @if (@alert.UserID == (int)Session["id"])
+                    if (@alert.UserID == (int)Session["id"])
                     {
+                        if (@alert.Status == "Concluído")
+                        {
+
+                <tr class="table-success">
                         <td class="autor">
                             <img src="~/user.png" class="avatar rounded-circle mr-3">
                             <b>@alert.UserName</b>
@@ -127,8 +130,113 @@
 
                         </td>
 
-                    }
                 </tr>
+                        }                      
+                        if (@alert.Status == "Em análise")
+                        {
+                <tr  class="table-warning">
+
+                        <td class="autor">
+                            <img src="~/user.png" class="avatar rounded-circle mr-3">
+                            <b>@alert.UserName</b>
+                        </td>
+                        <td class="autor">
+                            <b>@alert.Title</b>
+                        </td>
+                        <td>
+                            @if (@alert.Important == 1)
+                            {
+                                <span class="badge badge-dot mr-4">
+                                    <i class="bg-yellow"></i>
+                                    <span class="status">Baixa Importância</span>
+                                </span>
+                            }
+                            @if (@alert.Important == 2)
+                            {
+                                <span class="badge badge-dot mr-4">
+                                    <i class="bg-orange"></i>
+                                    <span class="status">Média Importância</span>
+                                </span>
+                            }
+                            @if (@alert.Important == 3)
+                            {
+                                <span class="badge badge-dot mr-4">
+                                    <i class="bg-danger"></i>
+                                    <span class="status">Elevada Importância</span>
+                                </span>
+                            }
+                        </td>
+                        <td>
+                            <span class="font-weight-bold">@alert.Location</span>
+                        </td>
+                        <td>
+                            <span class="text-muted">@alert.Date.Day/@alert.Date.Month/@alert.Date.Year</span>
+                        </td>
+                        <td>
+                            <span class="font-weight-bold">@alert.Status</span>
+                        </td>                       
+                        <td>
+                            <span class="font-weight-bold">@alert.Comment</span>
+                        </td>
+                        <td class="table-actions">
+
+                        </td>
+                </tr>
+
+                        }
+                        if (@alert.Status == "Por analisar")
+                        {
+                <tr>
+
+                        <td class="autor">
+                            <img src="~/user.png" class="avatar rounded-circle mr-3">
+                            <b>@alert.UserName</b>
+                        </td>
+                        <td class="autor">
+                            <b>@alert.Title</b>
+                        </td>
+                        <td>
+                            @if (@alert.Important == 1)
+                            {
+                                <span class="badge badge-dot mr-4">
+                                    <i class="bg-yellow"></i>
+                                    <span class="status">Baixa Importância</span>
+                                </span>
+                            }
+                            @if (@alert.Important == 2)
+                            {
+                                <span class="badge badge-dot mr-4">
+                                    <i class="bg-orange"></i>
+                                    <span class="status">Média Importância</span>
+                                </span>
+                            }
+                            @if (@alert.Important == 3)
+                            {
+                                <span class="badge badge-dot mr-4">
+                                    <i class="bg-danger"></i>
+                                    <span class="status">Elevada Importância</span>
+                                </span>
+                            }
+                        </td>
+                        <td>
+                            <span class="font-weight-bold">@alert.Location</span>
+                        </td>
+                        <td>
+                            <span class="text-muted">@alert.Date.Day/@alert.Date.Month/@alert.Date.Year</span>
+                        </td>
+                        <td>
+                            <span class="font-weight-bold">@alert.Status</span>
+                        </td>                       
+                        <td>
+                            <span class="font-weight-bold">@alert.Comment</span>
+                        </td>
+                        <td class="table-actions">
+
+                        </td>
+                </tr>
+
+                        }
+                    }
                 }                
                 @if ((int)Session["type"] == 2)
                 {

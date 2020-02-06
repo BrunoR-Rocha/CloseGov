@@ -18,7 +18,7 @@
                         <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                             <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                             <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Default</li>
+                            <li class="breadcrumb-item active" aria-current="page">Página Inicial</li>
                         </ol>
                     </nav>
                 </div>
@@ -57,11 +57,12 @@
             </div>
         </div>
         <!-- Light table -->
-        <div class="table-responsive" data-toggle="list" data-list-values='["autor", "importância", "local", "data"]'>
+        <div class="table-responsive" data-toggle="list" data-list-values='["autor", "titulo", "importância", "local", "data"]'>
             <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                     <tr>
                         <th scope="col" class="sort" data-sort="autor">Autor</th>
+                        <th scope="col" class="sort" data-sort="titulo">Título</th>
                         <th scope="col" class="sort" data-sort="importancia">Importância</th>
                         <th scope="col" class="sort" data-sort="local">Local</th>
                         <th scope="col" class="sort" data-sort="data">Data</th>
@@ -73,63 +74,127 @@
                 !ViewBag.alertIterator.IsFinished; warning = ViewBag.alertIterator.Next())
                 {
                     Alert alert = (Alert)warning._warning;
-                    <tbody class="list">
-                        <tr>
+            <tbody class="list">
+                @if ((int)Session["type"] == 1)
+                {
+                <tr>
+                    @if (@alert.UserID == (int)Session["id"])
+                    {
+                        <td class="autor">
+                            <img src="~/user.png" class="avatar rounded-circle mr-3">
+                            <b>@alert.UserName</b>
+                        </td>
+                        <td class="autor">
+                            <b>@alert.Title</b>
+                        </td>
+                        <td>
+                            @if (@alert.Important == 1)
+                            {
+                                <span class="badge badge-dot mr-4">
+                                    <i class="bg-yellow"></i>
+                                    <span class="status">Baixa Importância</span>
+                                </span>
+                            }
+                            @if (@alert.Important == 2)
+                            {
+                                <span class="badge badge-dot mr-4">
+                                    <i class="bg-orange"></i>
+                                    <span class="status">Média Importância</span>
+                                </span>
+                            }
+                            @if (@alert.Important == 3)
+                            {
+                                <span class="badge badge-dot mr-4">
+                                    <i class="bg-danger"></i>
+                                    <span class="status">Elevada Importância</span>
+                                </span>
+                            }
+                        </td>
+                        <td>
+                            <span class="font-weight-bold">@alert.Location</span>
+                        </td>
+                        <td>
+                            <span class="text-muted">@alert.Date.Day/@alert.Date.Month/@alert.Date.Year</span>
+                        </td>
+                        <td>
+                            <span class="font-weight-bold">@alert.Status</span>
 
-                            <td class="autor">
-                                <img src="~/user.png" class="avatar rounded-circle mr-3">
-                                <b>@alert.Title</b>
-                            </td>
-                            <td>
-                                @if (@alert.Important == 1)
-                                {
-                                    <span class="badge badge-dot mr-4">
-                                        <i class="bg-yellow"></i>
-                                        <span class="status">Baixa Importância</span>
-                                    </span>
-                                }
-                                @if (@alert.Important == 2)
-                                {
-                                    <span class="badge badge-dot mr-4">
-                                        <i class="bg-orange"></i>
-                                        <span class="status">Média Importância</span>
-                                    </span>
-                                }
-                                @if (@alert.Important == 3)
-                                {
-                                    <span class="badge badge-dot mr-4">
-                                        <i class="bg-danger"></i>
-                                        <span class="status">Elevada Importância</span>
-                                    </span>
-                                }
-                            </td>
-                            <td>
-                                <span class="font-weight-bold">@alert.Location</span>
-                            </td>
-                            <td>
-                                <span class="text-muted">@alert.Date.Day/@alert.Date.Month/@alert.Date.Year</span>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div>
-                                        <div class="progress">
-                                            <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="table-actions">
-                                <a href="#!" class="table-action" data-toggle="tooltip"
-                                   data-original-title="Editar ocorrência">
-                                    <i class="fas fa-user-edit"></i>
-                                </a>
-                                <a href="#!" class="table-action table-action-delete" data-toggle="tooltip"
-                                   data-original-title="Apagar ocorrência">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
+                        </td>
+                        <td class="table-actions">
+                            <a href="#!" class="table-action" data-toggle="tooltip"
+                               data-original-title="Editar ocorrência">
+                                <i class="fas fa-user-edit"></i>
+                            </a>
+                            <a href="#!" class="table-action table-action-delete" data-toggle="tooltip"
+                               data-original-title="Apagar ocorrência">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    }
+                    </tr>
+                }                
+                @if ((int)Session["type"] == 2)
+                {
+                    <tr>
+
+                        <td class="autor">
+                            <img src="~/user.png" class="avatar rounded-circle mr-3">
+                            <b>@alert.UserName</b>
+                        </td>
+
+                        <td class="autor">
+                            <b>@alert.Title</b>
+                        </td>
+                        <td>
+                            @if (@alert.Important == 1)
+                            {
+                                <span class="badge badge-dot mr-4">
+                                    <i class="bg-yellow"></i>
+                                    <span class="status">Baixa Importância</span>
+                                </span>
+                            }
+                            @if (@alert.Important == 2)
+                            {
+                                <span class="badge badge-dot mr-4">
+                                    <i class="bg-orange"></i>
+                                    <span class="status">Média Importância</span>
+                                </span>
+                            }
+                            @if (@alert.Important == 3)
+                            {
+                                <span class="badge badge-dot mr-4">
+                                    <i class="bg-danger"></i>
+                                    <span class="status">Elevada Importância</span>
+                                </span>
+                            }
+                        </td>
+                        <td>
+                            <span class="font-weight-bold">@alert.Location</span>
+                        </td>
+                        <td>
+                            <span class="text-muted">@alert.Date.Day/@alert.Date.Month/@alert.Date.Year</span>
+                        </td>
+                        <td>
+                            
+                                <select class="form-control status" id="exampleFormControlSelect1" status ="@alert.Status" alert_id = "@alert.Id">
+                                    <option value="Por analisar">Por analisar</option>
+                                    <option value="Em análise">Em análise</option>
+                                    <option value="Concluído">Concluído</option>
+                                </select>
+                        </td>
+                        <td class="table-actions">
+                            <a href="#!" class="table-action" data-toggle="tooltip"
+                               data-original-title="Editar ocorrência">
+                                <i class="fas fa-user-edit"></i>
+                            </a>
+                            <a href="#!" class="table-action table-action-delete" data-toggle="tooltip"
+                               data-original-title="Apagar ocorrência">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+                </tbody>
 
                 }
             </table>

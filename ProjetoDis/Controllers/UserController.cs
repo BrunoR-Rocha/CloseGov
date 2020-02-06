@@ -43,6 +43,10 @@ namespace ProjetoDis.Controllers
                {
                    Session["id"] = firstUser.Id;
                    Session["name"] = firstUser.Name;
+                   Session["email"] = firstUser.Email;
+                   Session["address"] = firstUser.Address;
+                   Session["region"] = firstUser.Region;
+                   Session["nif"] = firstUser.Nif;
                    Session["type"] = firstUser.Type;
 
                    Session["alert"] = "success login";

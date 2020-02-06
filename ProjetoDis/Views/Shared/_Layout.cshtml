@@ -193,7 +193,7 @@
                                                 <div class="row align-items-center">
                                                     <div class="col-auto">
                                                         <!-- Avatar -->
-                                                        <img alt="Image placeholder" src="../../assets/img/theme/team-1.jpg" class="avatar rounded-circle">
+                                                        <img alt="Image placeholder" src="~/notification.jpg" class="avatar rounded-circle">
                                                     </div>
                                                     <div class="col ml--2">
                                                         <div class="d-flex justify-content-between align-items-center">
@@ -347,6 +347,23 @@
     <script type="text/javascript">
         $(function () {
 
+
+            $('.status').change(function () {
+                $.ajax({
+                    type: 'get',
+                    url: '/Main/UpdateAlert',
+                    data: {
+                        'id': $(this).attr('alert_id'),
+                        'status': $(this).val()
+                    },
+                    success: function (data) {
+                       
+                    }
+                });
+            });
+
+
+
             initMap();
 
             var todaysDate = new Date(); // Gets today's date
@@ -374,6 +391,12 @@
             });
 
             $("[href='" + window.location.pathname + "']").addClass('active');
+            var selectVal;
+
+            $("select").each(function () {
+                selectVal = $(this).attr('status');
+                $(this).find("option[value='" + selectVal + "']").attr('selected', 'selected');
+            });
 
         });
     </script>

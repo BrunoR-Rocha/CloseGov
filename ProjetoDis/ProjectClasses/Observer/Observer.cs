@@ -50,13 +50,15 @@ namespace ProjetoDis.ProjectClasses.Observer
         public int id { get; set; }
         public string title { get; set; }
         public string description { get; set; }
+        public DateTime date { get; set; }
         public string type { get; set; }
 
-        public NotificationData(int id, string title, string description, string type)
+        public NotificationData(int id, string title, string description, DateTime date,string type)
         {
             this.id = id;
             this.title = title;
             this.description = description;
+            this.date = date;
             this.type = type;
         }
     }
@@ -88,6 +90,7 @@ namespace ProjetoDis.ProjectClasses.Observer
 
             note.Description = data.description;
             note.Title = data.title;
+            note.Date = data.date;
             note.User = employeeId;
 
             db.AddNotification(note);

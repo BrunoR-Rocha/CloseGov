@@ -136,6 +136,20 @@ namespace ProjetoDis.Controllers
 
             return new JavaScriptSerializer().Serialize(reportsList);
 
+        }       
+        
+        public string UpdateAlert()
+        {
+
+            int AlertID = 0;
+            Int32.TryParse(Request.QueryString["id"], out AlertID);
+            string status = Request.QueryString["status"];
+
+            db.UpdateAlert(AlertID, status);
+
+            return Request.QueryString["id"];
+
+
         }
 
 
@@ -176,6 +190,7 @@ namespace ProjetoDis.Controllers
             requestData["address"] = Request["address"];
             requestData["perigo"] = Request["perigo"];
             requestData["user"] = "" + Session["id"];
+            requestData["name"] = "" + Session["name"];
 
             //talvez acrescentar um selector para um dos 3 tipos de ocorrencia
             AlertTemplate alertTemplate = AlertTemplate.Instance;
@@ -208,6 +223,7 @@ namespace ProjetoDis.Controllers
             requestData["address"] = Request["address"];
             requestData["local"] = Request["local"];
             requestData["user"] = "" + Session["id"];
+            requestData["name"] = "" + Session["name"];
 
             ReportTemplate reportTemplate = ReportTemplate.Instance;
 

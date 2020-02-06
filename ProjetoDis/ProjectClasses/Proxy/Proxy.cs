@@ -24,9 +24,11 @@ namespace ProjetoDis.ProjectClasses.Proxy
             User[] GetUsers(Func<User, bool>predicate);
             Notification[] GetNotifications(Func<Notification, bool>predicate);
             User GetUser(string email);
+            void UpdateAlert(int id, string status);
+
     }
 
-        public class RealDatabaseSubject : IDatabaseSubject
+    public class RealDatabaseSubject : IDatabaseSubject
         {
             CloseGovDb db = new CloseGovDb();
 
@@ -90,6 +92,15 @@ namespace ProjetoDis.ProjectClasses.Proxy
             {
                 return db.Users.Where(user => user.Email == email).FirstOrDefault();
             }
+
+
+            public void UpdateAlert(int id, string status)
+            {
+                db.Alerts.FirstOrDefault(x => x.Id == id).Status = status;
+                db.SaveChanges();
+            }
+
+
         }
 
         public class ProxyDB : IDatabaseSubject
@@ -150,8 +161,14 @@ namespace ProjetoDis.ProjectClasses.Proxy
             {
                 return _db.GetUser(email);
             }
+
+            public void UpdateAlert(int id, string status)
+            {
+                _db.UpdateAlert(id, status);
+            }
+
         }
 
 
-    
+
 }

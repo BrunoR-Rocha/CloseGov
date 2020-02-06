@@ -217,7 +217,10 @@
     <Content Include="fonts\nucleo-icons.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="img-1-1000x600.jpg" />
+    <Content Include="img.jpg" />
     <Content Include="logo.png" />
+    <Content Include="notification.jpg" />
     <Content Include="Scripts\argon-dashboard.min.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />

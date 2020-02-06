@@ -72,15 +72,16 @@ namespace ProjetoDis.ProjectClasses.Templates
             alert.Description = request["description"];
             alert.Location = request["local"];
             alert.Address = request["address"];
+            alert.UserName = request["name"];
             alert.UserID = user;
             alert.Date = date;
-            alert.Status = "Em Espera";
+            alert.Status = "Por analisar";
             alert.Comment = "";
             alert.Important = danger;
 
             db.AddAlert(alert);
 
-            return new NotificationData(alert.Id, alert.Title, alert.Description, "Alert");
+            return new NotificationData(alert.Id, alert.Title, alert.Description, alert.Date, "Alert");
         }
 
         public override void Notify(NotificationData data)
@@ -151,12 +152,13 @@ namespace ProjetoDis.ProjectClasses.Templates
             report.Description = request["description"];
             report.Location = request["local"];
             report.UserID = user;
+            report.UserName = request["name"];
             report.Address = request["address"];
             report.Date = date;
             
             db.AddReport(report);
             
-            return new NotificationData(report.Id, report.Title, report.Description, "Report");
+            return new NotificationData(report.Id, report.Title, report.Description, report.Date ,"Report");
         }
 
         public override void Notify(NotificationData data)
